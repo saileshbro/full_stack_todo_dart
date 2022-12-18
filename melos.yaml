@@ -3,3 +3,10 @@ repository: https://github.com/saileshbro/full_stack_todo_dart.git
 
 packages:
   - /**/pubspec.yaml
+
+scripts:
+  backend:dev:
+    run: melos exec -c 1 --fail-fast -- "dart_frog dev"
+    description: Starts the dev server for the backend
+    select-package:
+      flutter: false
