@@ -1,0 +1,5 @@
+name: full_stack_todo_dart
+repository: https://github.com/saileshbro/full_stack_todo_dart.git
+
+packages:
+  - /**/pubspec.yaml
