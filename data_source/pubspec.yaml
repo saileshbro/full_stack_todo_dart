@@ -1,0 +1,17 @@
+name: data_source
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+dependencies:
+  models:
+    path: ../models
+  typedefs:
+    path: ../typedefs
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^3.1.0
