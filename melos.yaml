@@ -6,14 +6,31 @@ packages:
 
 scripts:
   backend:dev:
-    run: melos exec -c 1 --fail-fast -- "dart_frog dev"
+    run: dart_frog dev
+    exec:
+      cuncurrency: 1
+      fail-fast: true
     description: Starts the dev server for the backend
     select-package:
+      scope: backend
       flutter: false
 
-  generate:dart:
-    run: melos exec -c 1 --depends-on="build_runner" --no-flutter -- "dart pub run build_runner build --delete-conflicting-outputs"
+  generate:build:
+    run: melos run build_runner:build --no-select
+    description: Generate all files for all packages in this project.
+    exec:
+      concurrency: 5
+      fail-fast: true
+
+  build_runner:build:
+    run: dart pub run build_runner build --delete-conflicting-outputs
     description: Build all generated files for Dart packages in this project.
+    exec:
+      concurrency: 1
+      fail-fast: true
+    select-package:
+      depends-on: build_runner
+      no-flutter: true
 
   test:dart:
     run: melos exec -c 1 --fail-fast -- "dart test"
