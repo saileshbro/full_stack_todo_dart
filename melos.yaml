@@ -10,3 +10,14 @@ scripts:
     description: Starts the dev server for the backend
     select-package:
       flutter: false
+
+  generate:dart:
+    run: melos exec -c 1 --depends-on="build_runner" --no-flutter -- "dart pub run build_runner build --delete-conflicting-outputs"
+    description: Build all generated files for Dart packages in this project.
+
+  test:dart:
+    run: melos exec -c 1 --fail-fast -- "dart test"
+    description: Run Dart tests for a specific package in this project.
+    select-package:
+      flutter: false
+      dir-exists: test

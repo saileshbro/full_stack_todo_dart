@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/backend/melos_backend.iml" filepath="$PROJECT_DIR$/backend/melos_backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data_source/melos_data_source.iml" filepath="$PROJECT_DIR$/data_source/melos_data_source.iml" />
+      <module fileurl="file://$PROJECT_DIR$/failures/melos_failures.iml" filepath="$PROJECT_DIR$/failures/melos_failures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/models/melos_models.iml" filepath="$PROJECT_DIR$/models/melos_models.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repository/melos_repository.iml" filepath="$PROJECT_DIR$/repository/melos_repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/typedefs/melos_typedefs.iml" filepath="$PROJECT_DIR$/typedefs/melos_typedefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_full_stack_todo_dart.iml" filepath="$PROJECT_DIR$/melos_full_stack_todo_dart.iml" />
+    </modules>
+  </component>
+</project>
