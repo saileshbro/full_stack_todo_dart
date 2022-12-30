@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   dart_frog: ^0.3.0
+  dotenv: ^4.0.1
+  postgres: ^2.5.2
 
 dev_dependencies:
   mocktail: ^0.3.0
