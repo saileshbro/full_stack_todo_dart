@@ -22,7 +22,16 @@ class TodoController extends HttpController {
   final TodoRepository _repo;
   @override
   FutureOr<Response> index(Request request) async {
-    throw UnimplementedError();
+    final res = await _repo.getTodos();
+    return res.fold(
+      (left) => Response.json(
+        body: {'message': left.message},
+        statusCode: left.statusCode,
+      ),
+      (right) => Response.json(
+        body: right.map((e) => e.toJson()).toList(),
+      ),
+    );
   }
 
   @override
