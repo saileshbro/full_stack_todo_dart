@@ -38,7 +38,23 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   Future<Either<Failure, Todo>> getTodoById(TodoId id) async {
-    throw UnimplementedError();
+    try {
+      final res = await dataSource.getTodoById(id);
+      return Right(res);
+    } on NotFoundException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
+    } on ServerException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
   }
 
   @override
