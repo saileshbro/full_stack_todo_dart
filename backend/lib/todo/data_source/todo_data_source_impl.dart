@@ -53,7 +53,19 @@ class TodoDataSourceImpl implements TodoDataSource {
 
   @override
   Future<List<Todo>> getAllTodo() async {
-    throw UnimplementedError();
+    try {
+      await _databaseConnection.connect();
+      final result = await _databaseConnection.db.query(
+        'SELECT * FROM todos',
+      );
+      final data =
+          result.map((e) => e.toColumnMap()).map(Todo.fromJson).toList();
+      return data;
+    } on PostgreSQLException catch (e) {
+      throw ServerException(e.message ?? 'Unexpected error');
+    } finally {
+      await _databaseConnection.close();
+    }
   }
 
   @override
