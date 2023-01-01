@@ -20,7 +20,15 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   Future<Either<Failure, Todo>> createTodo(CreateTodoDto createTodoDto) async {
-    throw UnimplementedError();
+    try {
+      final todo = await dataSource.createTodo(createTodoDto);
+      return Right(todo);
+    } on ServerException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
   }
 
   @override
