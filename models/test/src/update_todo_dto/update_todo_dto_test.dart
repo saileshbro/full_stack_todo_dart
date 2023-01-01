@@ -49,7 +49,7 @@ void main() {
     group('validated test -', () {
       test('all fields missing', () {
         final invalid = UpdateTodoDto.validated({});
-        expect(invalid, isA<Left>());
+        expect(invalid, isA<Left<ValidationFailure, UpdateTodoDto>>());
         expect(invalid.left, isA<Failure>());
         expect(invalid.left, isA<ValidationFailure>());
         expect(invalid.left.message, 'Validation failed');
@@ -66,7 +66,7 @@ void main() {
           'title': 'title',
           'completed': true,
         });
-        expect(invalid, isA<Right>());
+        expect(invalid, isA<Right<ValidationFailure, UpdateTodoDto>>());
         expect(invalid.right, isA<UpdateTodoDto>());
         expect(invalid.right.title, 'title');
         expect(invalid.right.description, null);
@@ -78,7 +78,7 @@ void main() {
           'description': 'description',
           'completed': true,
         });
-        expect(invalid, isA<Right>());
+        expect(invalid, isA<Right<ValidationFailure, UpdateTodoDto>>());
         expect(invalid.right, isA<UpdateTodoDto>());
         expect(invalid.right.title, null);
         expect(invalid.right.description, 'description');
@@ -90,7 +90,7 @@ void main() {
           'title': 'title',
           'description': 'description',
         });
-        expect(invalid, isA<Right>());
+        expect(invalid, isA<Right<ValidationFailure, UpdateTodoDto>>());
         expect(invalid.right, isA<UpdateTodoDto>());
         expect(invalid.right.title, 'title');
         expect(invalid.right.description, 'description');
@@ -103,7 +103,7 @@ void main() {
           'description': 'description',
           'completed': true,
         });
-        expect(invalid, isA<Right>());
+        expect(invalid, isA<Right<ValidationFailure, UpdateTodoDto>>());
         expect(invalid.right, isA<UpdateTodoDto>());
         expect(invalid.right.title, 'title');
         expect(invalid.right.description, 'description');
