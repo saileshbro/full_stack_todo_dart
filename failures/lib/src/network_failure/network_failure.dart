@@ -13,7 +13,7 @@ class NetworkFailure extends Failure with _$NetworkFailure {
   /// {@macro network_failure}
   const factory NetworkFailure({
     required String message,
-    required int code,
+    required int statusCode,
     @Default([]) List<String> errors,
   }) = _NetworkFailure;
 

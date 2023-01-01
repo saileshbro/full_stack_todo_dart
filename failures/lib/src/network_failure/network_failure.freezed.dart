@@ -21,7 +21,7 @@ NetworkFailure _$NetworkFailureFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NetworkFailure {
   String get message => throw _privateConstructorUsedError;
-  int get code => throw _privateConstructorUsedError;
+  int get statusCode => throw _privateConstructorUsedError;
   List<String> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $NetworkFailureCopyWith<$Res> {
           NetworkFailure value, $Res Function(NetworkFailure) then) =
       _$NetworkFailureCopyWithImpl<$Res, NetworkFailure>;
   @useResult
-  $Res call({String message, int code, List<String> errors});
+  $Res call({String message, int statusCode, List<String> errors});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$NetworkFailureCopyWithImpl<$Res, $Val extends NetworkFailure>
   @override
   $Res call({
     Object? message = null,
-    Object? code = null,
+    Object? statusCode = null,
     Object? errors = null,
   }) {
     return _then(_value.copyWith(
@@ -61,9 +61,9 @@ class _$NetworkFailureCopyWithImpl<$Res, $Val extends NetworkFailure>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
               as int,
       errors: null == errors
           ? _value.errors
@@ -81,7 +81,7 @@ abstract class _$$_NetworkFailureCopyWith<$Res>
       __$$_NetworkFailureCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, int code, List<String> errors});
+  $Res call({String message, int statusCode, List<String> errors});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$_NetworkFailureCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
-    Object? code = null,
+    Object? statusCode = null,
     Object? errors = null,
   }) {
     return _then(_$_NetworkFailure(
@@ -104,9 +104,9 @@ class __$$_NetworkFailureCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
               as int,
       errors: null == errors
           ? _value._errors
@@ -121,7 +121,7 @@ class __$$_NetworkFailureCopyWithImpl<$Res>
 class _$_NetworkFailure implements _NetworkFailure {
   const _$_NetworkFailure(
       {required this.message,
-      required this.code,
+      required this.statusCode,
       final List<String> errors = const []})
       : _errors = errors;
 
@@ -131,7 +131,7 @@ class _$_NetworkFailure implements _NetworkFailure {
   @override
   final String message;
   @override
-  final int code;
+  final int statusCode;
   final List<String> _errors;
   @override
   @JsonKey()
@@ -147,14 +147,15 @@ class _$_NetworkFailure implements _NetworkFailure {
         (other.runtimeType == runtimeType &&
             other is _$_NetworkFailure &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.code, code) || other.code == code) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, message, code, const DeepCollectionEquality().hash(_errors));
+  int get hashCode => Object.hash(runtimeType, message, statusCode,
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +174,7 @@ class _$_NetworkFailure implements _NetworkFailure {
 abstract class _NetworkFailure implements NetworkFailure {
   const factory _NetworkFailure(
       {required final String message,
-      required final int code,
+      required final int statusCode,
       final List<String> errors}) = _$_NetworkFailure;
 
   factory _NetworkFailure.fromJson(Map<String, dynamic> json) =
@@ -182,7 +183,7 @@ abstract class _NetworkFailure implements NetworkFailure {
   @override
   String get message;
   @override
-  int get code;
+  int get statusCode;
   @override
   List<String> get errors;
   @override
