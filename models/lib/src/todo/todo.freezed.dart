@@ -24,7 +24,9 @@ mixin _$Todo {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool? get completed => throw _privateConstructorUsedError;
+  @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @DateTimeConverterNullable()
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,8 +44,8 @@ abstract class $TodoCopyWith<$Res> {
       String title,
       String description,
       bool? completed,
-      DateTime createdAt,
-      DateTime? updatedAt});
+      @DateTimeConverter() DateTime createdAt,
+      @DateTimeConverterNullable() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -106,8 +108,8 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       String title,
       String description,
       bool? completed,
-      DateTime createdAt,
-      DateTime? updatedAt});
+      @DateTimeConverter() DateTime createdAt,
+      @DateTimeConverterNullable() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -163,8 +165,8 @@ class _$_Todo implements _Todo {
       required this.title,
       this.description = '',
       this.completed = false,
-      required this.createdAt,
-      this.updatedAt});
+      @DateTimeConverter() required this.createdAt,
+      @DateTimeConverterNullable() this.updatedAt});
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
 
@@ -179,8 +181,10 @@ class _$_Todo implements _Todo {
   @JsonKey()
   final bool? completed;
   @override
+  @DateTimeConverter()
   final DateTime createdAt;
   @override
+  @DateTimeConverterNullable()
   final DateTime? updatedAt;
 
   @override
@@ -230,8 +234,8 @@ abstract class _Todo implements Todo {
       required final String title,
       final String description,
       final bool? completed,
-      required final DateTime createdAt,
-      final DateTime? updatedAt}) = _$_Todo;
+      @DateTimeConverter() required final DateTime createdAt,
+      @DateTimeConverterNullable() final DateTime? updatedAt}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
@@ -244,8 +248,10 @@ abstract class _Todo implements Todo {
   @override
   bool? get completed;
   @override
+  @DateTimeConverter()
   DateTime get createdAt;
   @override
+  @DateTimeConverterNullable()
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)

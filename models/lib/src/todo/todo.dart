@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:models/src/serializers/date_time_converter.dart';
 import 'package:typedefs/typedefs.dart';
 
 part 'todo.freezed.dart';
@@ -23,8 +24,8 @@ class Todo with _$Todo {
     required String title,
     @Default('') String description,
     @Default(false) bool? completed,
-    required DateTime createdAt,
-    DateTime? updatedAt,
+    @DateTimeConverter() required DateTime createdAt,
+    @DateTimeConverterNullable() DateTime? updatedAt,
   }) = _Todo;
 
   /// Creates an instance of [Todo] from a JSON object.
