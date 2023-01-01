@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:dart_frog/dart_frog.dart';
+import 'package:either_dart/either.dart';
+import 'package:exceptions/exceptions.dart';
+import 'package:failures/failures.dart';
 
 /// {@template http_controller}
 /// This is the base class for all http controllers
@@ -22,4 +26,31 @@ abstract class HttpController {
 
   /// destroy - DELETE /resource/{id}
   FutureOr<Response> destroy(Request request, String id);
+
+  /// Parses the request body into a json map
+  /// Returns a [ValidationFailure] if the body is invalid
+  Future<Either<Failure, Map<String, dynamic>>> parseJson(
+    Request request,
+  ) async {
+    try {
+      final body = await request.body();
+      if (body.isEmpty) {
+        throw const BadRequestException(message: 'Invalid body');
+      }
+      late final Map<String, dynamic> json;
+      try {
+        json = jsonDecode(body) as Map<String, dynamic>;
+        return Right(json);
+      } catch (e) {
+        throw const BadRequestException(message: 'Invalid body');
+      }
+    } on BadRequestException catch (e) {
+      return Left(
+        ValidationFailure(
+          message: e.message,
+          errors: {},
+        ),
+      );
+    }
+  }
 }
