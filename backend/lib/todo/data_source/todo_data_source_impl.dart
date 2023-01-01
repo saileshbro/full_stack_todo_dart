@@ -15,7 +15,35 @@ class TodoDataSourceImpl implements TodoDataSource {
   final DatabaseConnection _databaseConnection;
   @override
   Future<Todo> createTodo(CreateTodoDto todo) async {
-    throw UnimplementedError();
+    try {
+      await _databaseConnection.connect();
+      final result = await _databaseConnection.db.query(
+        '''
+        INSERT INTO todos (title, description, completed, created_at)
+        VALUES (@title, @description, @completed, @created_at) RETURNING *
+        ''',
+        substitutionValues: {
+          'title': todo.title,
+          'description': todo.description,
+          'completed': false,
+          'created_at': DateTime.now(),
+        },
+      );
+      if (result.affectedRowCount == 0) {
+        throw const ServerException('Failed to create todo');
+      }
+      final todoMap = result.first.toColumnMap();
+      return Todo(
+        id: todoMap['id'] as int,
+        title: todoMap['title'] as String,
+        description: todoMap['description'] as String,
+        createdAt: todoMap['created_at'] as DateTime,
+      );
+    } on PostgreSQLException catch (e) {
+      throw ServerException(e.message ?? 'Unexpected error');
+    } finally {
+      await _databaseConnection.close();
+    }
   }
 
   @override
