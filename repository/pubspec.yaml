@@ -7,15 +7,15 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  either_dart: ^0.3.0
-  models:
-    path: ../models
-  failures:
-    path: ../failures
-  typedefs:
-    path: ../typedefs
   data_source:
     path: ../data_source
+  either_dart: ^0.3.0
+  failures:
+    path: ../failures
+  models:
+    path: ../models
+  typedefs:
+    path: ../typedefs
 
 dev_dependencies:
   mocktail: ^0.3.0

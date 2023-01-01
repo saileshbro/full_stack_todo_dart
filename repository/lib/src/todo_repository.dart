@@ -23,5 +23,5 @@ abstract class TodoRepository {
   });
 
   /// Delete a todo with the given [id].
-  Future<Either<Failure, Todo>> deleteTodo(TodoId id);
+  Future<Either<Failure, void>> deleteTodo(TodoId id);
 }
