@@ -59,7 +59,14 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   Future<Either<Failure, List<Todo>>> getTodos() async {
-    throw UnimplementedError();
+    try {
+      return Right(await dataSource.getAllTodo());
+    } on ServerException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
   }
 
   @override
