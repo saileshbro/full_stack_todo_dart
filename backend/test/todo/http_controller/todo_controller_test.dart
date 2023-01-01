@@ -41,8 +41,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 500);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Server error'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Server error'})),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -60,7 +60,7 @@ void main() {
         verify(() => mockTodoRepository.getTodos()).called(1);
         expect(response, isA<Response>());
         expect(response.statusCode, 200);
-        expect(await response.body(), jsonEncode([]));
+        expect(response.body(), completion(jsonEncode([])));
         verifyNoMoreInteractions(mockTodoRepository);
       });
 
@@ -85,7 +85,7 @@ void main() {
         verify(() => mockTodoRepository.getTodos()).called(1);
         expect(response, isA<Response>());
         expect(response.statusCode, 200);
-        expect(await response.body(), jsonEncode([todo.toJson()]));
+        expect(response.body(), completion(jsonEncode([todo.toJson()])));
         verifyNoMoreInteractions(mockTodoRepository);
       });
     });
@@ -102,8 +102,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 400);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Invalid id'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Invalid id'})),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -130,8 +130,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 404);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'Todo not found'}),
+            response.body(),
+            completion(jsonEncode({'message': 'Todo not found'})),
           );
           verifyNoMoreInteractions(mockTodoRepository);
         },
@@ -160,7 +160,7 @@ void main() {
           verify(() => mockTodoRepository.getTodoById(1)).called(1);
           expect(response, isA<Response>());
           expect(response.statusCode, 200);
-          expect(await response.body(), jsonEncode(todo.toJson()));
+          expect(response.body(), completion(jsonEncode(todo.toJson())));
           verifyNoMoreInteractions(mockTodoRepository);
         },
       );
@@ -186,8 +186,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 400);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Invalid id'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Invalid id'})),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -213,8 +213,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 404);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'Todo not found'}),
+            response.body(),
+            completion(jsonEncode({'message': 'Todo not found'})),
           );
           verifyNoMoreInteractions(mockTodoRepository);
         },
@@ -236,8 +236,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 200);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'OK'}),
+            response.body(),
+            completion(jsonEncode({'message': 'OK'})),
           );
         },
       );
@@ -250,8 +250,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 400);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Invalid body'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Invalid body'})),
         );
       });
       test('should return errors if data not present', () async {
@@ -278,14 +278,16 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, HttpStatus.badRequest);
         expect(
-          await response.body(),
-          jsonEncode({
-            'message': 'Validation failed',
-            'errors': {
-              'title': ['Title is required'],
-              'description': ['Description is required'],
-            },
-          }),
+          response.body(),
+          completion(
+            jsonEncode({
+              'message': 'Validation failed',
+              'errors': {
+                'title': ['Title is required'],
+                'description': ['Description is required'],
+              },
+            }),
+          ),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -317,13 +319,15 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, HttpStatus.badRequest);
         expect(
-          await response.body(),
-          jsonEncode({
-            'message': 'Validation failed',
-            'errors': {
-              'description': ['Description is required'],
-            },
-          }),
+          response.body(),
+          completion(
+            jsonEncode({
+              'message': 'Validation failed',
+              'errors': {
+                'description': ['Description is required'],
+              },
+            }),
+          ),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -360,8 +364,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 201);
         expect(
-          await response.body(),
-          jsonEncode(todo.toJson()),
+          response.body(),
+          completion(jsonEncode(todo.toJson())),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -397,8 +401,8 @@ void main() {
         expect(response, isA<Response>());
         expect(response.statusCode, 500);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Unable to create todo'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Unable to create todo'})),
         );
         verifyNoMoreInteractions(mockTodoRepository);
       });
@@ -416,8 +420,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 400);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'Invalid body'}),
+            response.body(),
+            completion(jsonEncode({'message': 'Invalid body'})),
           );
         }
       });
@@ -434,8 +438,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 400);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'Invalid body'}),
+            response.body(),
+            completion(jsonEncode({'message': 'Invalid body'})),
           );
         }
       });
@@ -472,8 +476,8 @@ void main() {
           expect(response, isA<Response>());
           expect(response.statusCode, 400);
           expect(
-            await response.body(),
-            jsonEncode({'message': 'Invalid id'}),
+            response.body(),
+            completion(jsonEncode({'message': 'Invalid id'})),
           );
           verifyNoMoreInteractions(mockTodoRepository);
         }
@@ -508,8 +512,8 @@ void main() {
           ),
         ).called(1);
         expect(
-          await response.body(),
-          jsonEncode({'message': 'Unable to update todo'}),
+          response.body(),
+          completion(jsonEncode({'message': 'Unable to update todo'})),
         );
         expect(response.statusCode, 500);
       });
@@ -546,15 +550,17 @@ void main() {
           ),
         );
         expect(
-          await response.body(),
-          jsonEncode({
-            'message': 'Validation failed',
-            'errors': {
-              'title': ['At least one field must be provided'],
-              'description': ['At least one field must be provided'],
-              'completed': ['At least one field must be provided']
-            }
-          }),
+          response.body(),
+          completion(
+            jsonEncode({
+              'message': 'Validation failed',
+              'errors': {
+                'title': ['At least one field must be provided'],
+                'description': ['At least one field must be provided'],
+                'completed': ['At least one field must be provided']
+              }
+            }),
+          ),
         );
       });
       test('when the todo is successfully updated', () async {
@@ -593,15 +599,17 @@ void main() {
             ),
           ).called(1);
           expect(
-            await response.body(),
-            jsonEncode({
-              'id': 1,
-              'title': 'UPDATED',
-              'description': 'description',
-              'completed': false,
-              'created_at': createdAt.toIso8601String(),
-              'updated_at': updatedAt.toIso8601String(),
-            }),
+            response.body(),
+            completion(
+              jsonEncode({
+                'id': 1,
+                'title': 'UPDATED',
+                'description': 'description',
+                'completed': false,
+                'created_at': createdAt.toIso8601String(),
+                'updated_at': updatedAt.toIso8601String(),
+              }),
+            ),
           );
           verifyNoMoreInteractions(mockTodoRepository);
         }
