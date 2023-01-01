@@ -70,7 +70,21 @@ class TodoDataSourceImpl implements TodoDataSource {
 
   @override
   Future<Todo> getTodoById(TodoId id) async {
-    throw UnimplementedError();
+    try {
+      await _databaseConnection.connect();
+      final result = await _databaseConnection.db.query(
+        'SELECT * FROM todos WHERE id = @id',
+        substitutionValues: {'id': id},
+      );
+      if (result.isEmpty) {
+        throw const NotFoundException('Todo not found');
+      }
+      return Todo.fromJson(result.first.toColumnMap());
+    } on PostgreSQLException catch (e) {
+      throw ServerException(e.message ?? 'Unexpected error');
+    } finally {
+      await _databaseConnection.close();
+    }
   }
 
   @override
