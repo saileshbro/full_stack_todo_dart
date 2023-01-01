@@ -62,7 +62,35 @@ class TodoController extends HttpController {
 
   @override
   FutureOr<Response> store(Request request) async {
-    throw UnimplementedError();
+    final parsedBody = await parseJson(request);
+    if (parsedBody.isLeft) {
+      return Response.json(
+        body: {'message': parsedBody.left.message},
+        statusCode: parsedBody.left.statusCode,
+      );
+    }
+    final json = parsedBody.right;
+    final createTodoDto = CreateTodoDto.validated(json);
+    if (createTodoDto.isLeft) {
+      return Response.json(
+        body: {
+          'message': createTodoDto.left.message,
+          'errors': createTodoDto.left.errors,
+        },
+        statusCode: createTodoDto.left.statusCode,
+      );
+    }
+    final res = await _repo.createTodo(createTodoDto.right);
+    return res.fold(
+      (left) => Response.json(
+        body: {'message': left.message},
+        statusCode: left.statusCode,
+      ),
+      (right) => Response.json(
+        body: right.toJson(),
+        statusCode: HttpStatus.created,
+      ),
+    );
   }
 
   @override
