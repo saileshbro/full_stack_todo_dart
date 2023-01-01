@@ -74,6 +74,26 @@ class TodoRepositoryImpl implements TodoRepository {
     required TodoId id,
     required UpdateTodoDto updateTodoDto,
   }) async {
-    throw UnimplementedError();
+    try {
+      return Right(
+        await dataSource.updateTodo(
+          id: id,
+          todo: updateTodoDto,
+        ),
+      );
+    } on NotFoundException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
+    } on ServerException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
   }
 }
