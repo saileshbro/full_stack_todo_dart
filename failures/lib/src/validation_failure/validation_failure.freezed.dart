@@ -117,7 +117,7 @@ class _$_ValidationFailure implements _ValidationFailure {
   const _$_ValidationFailure(
       {required this.message,
       this.statusCode = HttpStatus.badRequest,
-      required final Map<String, List<String>> errors})
+      final Map<String, List<String>> errors = const {}})
       : _errors = errors;
 
   @override
@@ -127,6 +127,7 @@ class _$_ValidationFailure implements _ValidationFailure {
   final int statusCode;
   final Map<String, List<String>> _errors;
   @override
+  @JsonKey()
   Map<String, List<String>> get errors {
     if (_errors is EqualUnmodifiableMapView) return _errors;
     // ignore: implicit_dynamic_type
@@ -165,7 +166,7 @@ abstract class _ValidationFailure implements ValidationFailure {
   const factory _ValidationFailure(
       {required final String message,
       final int statusCode,
-      required final Map<String, List<String>> errors}) = _$_ValidationFailure;
+      final Map<String, List<String>> errors}) = _$_ValidationFailure;
 
   @override
   String get message;

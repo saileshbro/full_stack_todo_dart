@@ -14,6 +14,6 @@ class ValidationFailure extends Failure with _$ValidationFailure {
   const factory ValidationFailure({
     required String message,
     @Default(HttpStatus.badRequest) int statusCode,
-    required Map<String, List<String>> errors,
+    @Default({}) Map<String, List<String>> errors,
   }) = _ValidationFailure;
 }
