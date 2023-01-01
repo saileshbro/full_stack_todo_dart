@@ -48,7 +48,20 @@ class TodoDataSourceImpl implements TodoDataSource {
 
   @override
   Future<void> deleteTodoById(TodoId id) async {
-    throw UnimplementedError();
+    try {
+      await _databaseConnection.connect();
+      await _databaseConnection.db.query(
+        '''
+        DELETE FROM todos
+        WHERE id = @id
+        ''',
+        substitutionValues: {'id': id},
+      );
+    } on PostgreSQLException catch (e) {
+      throw ServerException(e.message ?? 'Unexpected error');
+    } finally {
+      await _databaseConnection.close();
+    }
   }
 
   @override
