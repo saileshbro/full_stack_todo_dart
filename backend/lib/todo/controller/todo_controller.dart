@@ -36,7 +36,23 @@ class TodoController extends HttpController {
 
   @override
   FutureOr<Response> show(Request request, String id) async {
-    throw UnimplementedError();
+    final todoId = mapTodoId(id);
+    if (todoId.isLeft) {
+      return Response.json(
+        body: {'message': todoId.left.message},
+        statusCode: todoId.left.statusCode,
+      );
+    }
+    final res = await _repo.getTodoById(todoId.right);
+    return res.fold(
+      (left) => Response.json(
+        body: {'message': left.message},
+        statusCode: left.statusCode,
+      ),
+      (right) => Response.json(
+        body: right.toJson(),
+      ),
+    );
   }
 
   @override
