@@ -33,7 +33,17 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   Future<Either<Failure, void>> deleteTodo(TodoId id) async {
-    throw UnimplementedError();
+    try {
+      final exists = await getTodoById(id);
+      if (exists.isLeft) return exists;
+      final todo = await dataSource.deleteTodoById(id);
+      return Right(todo);
+    } on ServerException catch (e) {
+      log(e.message);
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
   }
 
   @override
