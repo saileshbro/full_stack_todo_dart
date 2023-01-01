@@ -92,6 +92,33 @@ class TodoDataSourceImpl implements TodoDataSource {
     required TodoId id,
     required UpdateTodoDto todo,
   }) async {
-    throw UnimplementedError();
+    try {
+      await _databaseConnection.connect();
+      final result = await _databaseConnection.db.query(
+        '''
+        UPDATE todos
+        SET title = COALESCE(@new_title, title),
+            description = COALESCE(@new_description, description),
+            completed = COALESCE(@new_completed, completed),
+            updated_at = current_timestamp
+        WHERE id = @id
+        RETURNING *
+        ''',
+        substitutionValues: {
+          'id': id,
+          'new_title': todo.title,
+          'new_description': todo.description,
+          'new_completed': todo.completed,
+        },
+      );
+      if (result.isEmpty) {
+        throw const NotFoundException('Todo not found');
+      }
+      return Todo.fromJson(result.first.toColumnMap());
+    } on PostgreSQLException catch (e) {
+      throw ServerException(e.message ?? 'Unexpected error');
+    } finally {
+      await _databaseConnection.close();
+    }
   }
 }
