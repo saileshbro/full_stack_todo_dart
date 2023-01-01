@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-12-21 11:49:18</td>
+            <td class="headerValue">2023-01-01 12:09:41</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -61,37 +61,38 @@
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>            : import 'package:freezed_annotation/freezed_annotation.dart';</a>
-<a name="2"><span class="lineNum">       2 </span>            : import 'package:typedefs/typedefs.dart';</a>
-<a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : part 'todo.freezed.dart';</a>
-<a name="5"><span class="lineNum">       5 </span>            : part 'todo.g.dart';</a>
-<a name="6"><span class="lineNum">       6 </span>            : </a>
-<a name="7"><span class="lineNum">       7 </span>            : /// A class representing a todo item.</a>
-<a name="8"><span class="lineNum">       8 </span>            : @freezed</a>
-<a name="9"><span class="lineNum">       9 </span>            : class Todo with _$Todo {</a>
-<a name="10"><span class="lineNum">      10 </span>            :   /// Creates an instance of [Todo].</a>
-<a name="11"><span class="lineNum">      11 </span>            :   ///</a>
-<a name="12"><span class="lineNum">      12 </span>            :   /// The [id], [title] fields are required.</a>
-<a name="13"><span class="lineNum">      13 </span>            :   /// The [completed] field is optional</a>
-<a name="14"><span class="lineNum">      14 </span>            :   /// and has a default value of false</a>
-<a name="15"><span class="lineNum">      15 </span>            :   /// The [description] field is optional</a>
-<a name="16"><span class="lineNum">      16 </span>            :   /// and has a default value of an empty string.</a>
-<a name="17"><span class="lineNum">      17 </span>            :   /// The [createdAt] field is required and represents the date and time</a>
-<a name="18"><span class="lineNum">      18 </span>            :   /// when the todo item was created.</a>
-<a name="19"><span class="lineNum">      19 </span>            :   /// The [updatedAt] field is optional and represents the date and time</a>
-<a name="20"><span class="lineNum">      20 </span>            :   /// when the todo item was last updated.</a>
-<a name="21"><span class="lineNum">      21 </span>            :   factory Todo({</a>
-<a name="22"><span class="lineNum">      22 </span>            :     required TodoId id,</a>
-<a name="23"><span class="lineNum">      23 </span>            :     required String title,</a>
-<a name="24"><span class="lineNum">      24 </span>            :     @Default('') String description,</a>
-<a name="25"><span class="lineNum">      25 </span>            :     @Default(false) bool? completed,</a>
-<a name="26"><span class="lineNum">      26 </span>            :     required DateTime createdAt,</a>
-<a name="27"><span class="lineNum">      27 </span>            :     DateTime? updatedAt,</a>
-<a name="28"><span class="lineNum">      28 </span>            :   }) = _Todo;</a>
-<a name="29"><span class="lineNum">      29 </span>            : </a>
-<a name="30"><span class="lineNum">      30 </span>            :   /// Creates an instance of [Todo] from a JSON object.</a>
-<a name="31"><span class="lineNum">      31 </span><span class="lineCov">          2 :   factory Todo.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$TodoFromJson(json);</span></a>
-<a name="32"><span class="lineNum">      32 </span>            : }</a>
+<a name="2"><span class="lineNum">       2 </span>            : import 'package:models/src/serializers/date_time_converter.dart';</a>
+<a name="3"><span class="lineNum">       3 </span>            : import 'package:typedefs/typedefs.dart';</a>
+<a name="4"><span class="lineNum">       4 </span>            : </a>
+<a name="5"><span class="lineNum">       5 </span>            : part 'todo.freezed.dart';</a>
+<a name="6"><span class="lineNum">       6 </span>            : part 'todo.g.dart';</a>
+<a name="7"><span class="lineNum">       7 </span>            : </a>
+<a name="8"><span class="lineNum">       8 </span>            : /// A class representing a todo item.</a>
+<a name="9"><span class="lineNum">       9 </span>            : @freezed</a>
+<a name="10"><span class="lineNum">      10 </span>            : class Todo with _$Todo {</a>
+<a name="11"><span class="lineNum">      11 </span>            :   /// Creates an instance of [Todo].</a>
+<a name="12"><span class="lineNum">      12 </span>            :   ///</a>
+<a name="13"><span class="lineNum">      13 </span>            :   /// The [id], [title] fields are required.</a>
+<a name="14"><span class="lineNum">      14 </span>            :   /// The [completed] field is optional</a>
+<a name="15"><span class="lineNum">      15 </span>            :   /// and has a default value of false</a>
+<a name="16"><span class="lineNum">      16 </span>            :   /// The [description] field is optional</a>
+<a name="17"><span class="lineNum">      17 </span>            :   /// and has a default value of an empty string.</a>
+<a name="18"><span class="lineNum">      18 </span>            :   /// The [createdAt] field is required and represents the date and time</a>
+<a name="19"><span class="lineNum">      19 </span>            :   /// when the todo item was created.</a>
+<a name="20"><span class="lineNum">      20 </span>            :   /// The [updatedAt] field is optional and represents the date and time</a>
+<a name="21"><span class="lineNum">      21 </span>            :   /// when the todo item was last updated.</a>
+<a name="22"><span class="lineNum">      22 </span>            :   factory Todo({</a>
+<a name="23"><span class="lineNum">      23 </span>            :     required TodoId id,</a>
+<a name="24"><span class="lineNum">      24 </span>            :     required String title,</a>
+<a name="25"><span class="lineNum">      25 </span>            :     @Default('') String description,</a>
+<a name="26"><span class="lineNum">      26 </span>            :     @Default(false) bool? completed,</a>
+<a name="27"><span class="lineNum">      27 </span>            :     @DateTimeConverter() required DateTime createdAt,</a>
+<a name="28"><span class="lineNum">      28 </span>            :     @DateTimeConverterNullable() DateTime? updatedAt,</a>
+<a name="29"><span class="lineNum">      29 </span>            :   }) = _Todo;</a>
+<a name="30"><span class="lineNum">      30 </span>            : </a>
+<a name="31"><span class="lineNum">      31 </span>            :   /// Creates an instance of [Todo] from a JSON object.</a>
+<a name="32"><span class="lineNum">      32 </span><span class="lineCov">          2 :   factory Todo.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$TodoFromJson(json);</span></a>
+<a name="33"><span class="lineNum">      33 </span>            : }</a>
 </pre>
       </td>
     </tr>

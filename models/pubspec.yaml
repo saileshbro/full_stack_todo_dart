@@ -7,6 +7,11 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+  either_dart: ^0.3.0
+  exceptions:
+    path: ../exceptions
+  failures:
+    path: ../failures
   freezed_annotation: ^2.2.0
   json_annotation: ^4.7.0
   typedefs:
