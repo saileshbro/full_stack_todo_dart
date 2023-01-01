@@ -8,8 +8,22 @@ environment:
 
 dependencies:
   dart_frog: ^0.3.0
+  data_source:
+    path: ../data_source
   dotenv: ^4.0.1
+  either_dart: ^0.3.0
+  exceptions:
+    path: ../exceptions
+  failures:
+    path: ../failures
+  http: ^0.13.5
+  models:
+    path: ../models
   postgres: ^2.5.2
+  repository:
+    path: ../repository
+  typedefs:
+    path: ../typedefs
 
 dev_dependencies:
   mocktail: ^0.3.0
