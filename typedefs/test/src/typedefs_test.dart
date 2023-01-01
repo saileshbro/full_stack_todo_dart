@@ -8,13 +8,13 @@ void main() {
     group('mapTodoId', () {
       test('valid id tests', () {
         final todoId = mapTodoId('1');
-        expect(todoId, isA<Right>());
+        expect(todoId, isA<Right<Failure, TodoId>>());
         expect(todoId.right, isA<TodoId>());
       });
 
       test('invalid id tests', () {
         final todoId = mapTodoId('1s');
-        expect(todoId, isA<Left>());
+        expect(todoId, isA<Left<Failure, TodoId>>());
         expect(todoId.left, isA<Failure>());
         expect(todoId.left, isA<RequestFailure>());
         expect(todoId.left.message, 'Invalid id');
