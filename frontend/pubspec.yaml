@@ -24,6 +24,7 @@ dependencies:
     path: ../models
   repository:
     path: ../repository
+  retrofit: ^3.3.1
   stacked: ^3.0.1
   stacked_services: ^0.9.9
   typedefs:
@@ -37,6 +38,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   mockito: ^5.3.2
+  retrofit_generator: ^4.2.0
   stacked_generator: ^0.8.3
   very_good_analysis: ^3.1.0
 
