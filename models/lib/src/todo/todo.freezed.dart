@@ -23,7 +23,7 @@ mixin _$Todo {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool? get completed => throw _privateConstructorUsedError;
+  bool get completed => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   @DateTimeConverterNullable()
@@ -43,7 +43,7 @@ abstract class $TodoCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      bool? completed,
+      bool completed,
       @DateTimeConverter() DateTime createdAt,
       @DateTimeConverterNullable() DateTime? updatedAt});
 }
@@ -64,7 +64,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? completed = freezed,
+    Object? completed = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
@@ -81,10 +81,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      completed: freezed == completed
+      completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      bool? completed,
+      bool completed,
       @DateTimeConverter() DateTime createdAt,
       @DateTimeConverterNullable() DateTime? updatedAt});
 }
@@ -124,7 +124,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? completed = freezed,
+    Object? completed = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
@@ -141,10 +141,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      completed: freezed == completed
+      completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$_Todo implements _Todo {
   final String description;
   @override
   @JsonKey()
-  final bool? completed;
+  final bool completed;
   @override
   @DateTimeConverter()
   final DateTime createdAt;
@@ -233,7 +233,7 @@ abstract class _Todo implements Todo {
       {required final int id,
       required final String title,
       final String description,
-      final bool? completed,
+      final bool completed,
       @DateTimeConverter() required final DateTime createdAt,
       @DateTimeConverterNullable() final DateTime? updatedAt}) = _$_Todo;
 
@@ -246,7 +246,7 @@ abstract class _Todo implements Todo {
   @override
   String get description;
   @override
-  bool? get completed;
+  bool get completed;
   @override
   @DateTimeConverter()
   DateTime get createdAt;
