@@ -8,10 +8,10 @@
 import 'package:data_source/data_source.dart' as _i7;
 import 'package:dio/dio.dart' as _i3;
 import 'package:fullstack_todo/core/di/third_party_modules.dart' as _i13;
-import 'package:fullstack_todo/data/data_source/todo_http_client/todos_http_client.dart'
-    as _i6;
 import 'package:fullstack_todo/data/data_source/todo_remote_data_source/todos_remote_data_source.dart'
     as _i8;
+import 'package:fullstack_todo/data/data_source/todos_http_client/todos_http_client.dart'
+    as _i6;
 import 'package:fullstack_todo/data/repositories/todo_repository_impl.dart'
     as _i10;
 import 'package:fullstack_todo/data_services/todos_data_service.dart' as _i5;

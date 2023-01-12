@@ -9,4 +9,7 @@ abstract class ThirdPartyModules {
   @lazySingleton
   Dio get dio => Dio(BaseOptions(baseUrl: kBaseUrl))
     ..interceptors.add(NetworkErrorInterceptor());
+
+  @lazySingleton
+  NavigationService get navigationService;
 }
