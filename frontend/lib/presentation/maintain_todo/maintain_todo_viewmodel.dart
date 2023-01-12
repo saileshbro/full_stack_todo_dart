@@ -53,6 +53,20 @@ class MaintainTodoViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  Future<void> _createTodo() async {
+    final dto = CreateTodoDto(title: title, description: description);
+    final response = await runBusyFuture(_repository.createTodo(dto));
+    return response.fold(
+      (failure) {
+        setError(failure.message);
+      },
+      (todo) {
+        _todosDataService.add(todo);
+        _navigationService.back<void>();
+      },
+    );
+  }
+
   Todo? _todo;
   void init(Todo? todo) {
     if (todo == null) return;
@@ -67,4 +81,32 @@ class MaintainTodoViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  Future<void> _updateTodo() async {
+    if (_todo == null) return;
+    final dto = UpdateTodoDto(
+      title: title,
+      description: description,
+      completed: completed,
+    );
+    final response = await runBusyFuture(
+      _repository.updateTodo(id: _todo!.id, updateTodoDto: dto),
+    );
+    return response.fold(
+      (failure) {
+        setError(failure.message);
+      },
+      (todo) {
+        _todosDataService.add(todo);
+        _navigationService.back<void>();
+      },
+    );
+  }
+
+  Future<void> handleTodo() {
+    if (!isValidated) return Future.value();
+    if (_todo == null) {
+      return _createTodo();
+    }
+    return _updateTodo();
+  }
 }
