@@ -69,7 +69,7 @@ class TodoDataSourceImpl implements TodoDataSource {
     try {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
-        'SELECT * FROM todos',
+        'SELECT * FROM todos ORDER BY created_at DESC',
       );
       final data =
           result.map((e) => e.toColumnMap()).map(Todo.fromJson).toList();
