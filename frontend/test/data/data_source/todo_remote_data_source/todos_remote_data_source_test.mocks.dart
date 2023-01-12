@@ -101,17 +101,12 @@ class MockTodosHttpClient extends _i1.Mock implements _i3.TodosHttpClient {
         )),
       ) as _i4.Future<_i2.Todo>);
   @override
-  _i4.Future<_i2.Todo> deleteTodoById(int? id) => (super.noSuchMethod(
+  _i4.Future<void> deleteTodoById(int? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteTodoById,
           [id],
         ),
-        returnValue: _i4.Future<_i2.Todo>.value(_FakeTodo_0(
-          this,
-          Invocation.method(
-            #deleteTodoById,
-            [id],
-          ),
-        )),
-      ) as _i4.Future<_i2.Todo>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
