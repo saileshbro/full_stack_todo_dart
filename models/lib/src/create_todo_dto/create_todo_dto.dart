@@ -28,10 +28,12 @@ class CreateTodoDto with _$CreateTodoDto {
   ) {
     try {
       final errors = <String, List<String>>{};
-      if (json['title'] == null) {
+      final title = json['title'] as String? ?? '';
+      final description = json['description'] as String? ?? '';
+      if (title.isEmpty) {
         errors['title'] = ['Title is required'];
       }
-      if (json['description'] == null) {
+      if (description.isEmpty) {
         errors['description'] = ['Description is required'];
       }
       if (errors.isEmpty) return Right(CreateTodoDto.fromJson(json));
