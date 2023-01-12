@@ -1,8 +1,18 @@
 name: full_stack_todo_dart
 repository: https://github.com/saileshbro/full_stack_todo_dart.git
-
 packages:
-  - /**/pubspec.yaml
+  - backend
+  - frontend
+  - data_sorce
+  - exceptions
+  - models
+  - repository
+  - failutes
+  - typedefs
+
+sdkPath: .fvm/flutter_sdk
+ide:
+  intellij: false
 
 scripts:
   backend:dev:
@@ -30,11 +40,9 @@ scripts:
       fail-fast: true
     select-package:
       depends-on: build_runner
-      no-flutter: true
 
-  test:dart:
-    run: melos exec -c 1 --fail-fast -- "dart test"
-    description: Run Dart tests for a specific package in this project.
+  test:unit:
+    run: melos exec -c 1 --fail-fast -- "flutter test"
+    description: Run Unit tests for a specific package in this project.
     select-package:
-      flutter: false
       dir-exists: test

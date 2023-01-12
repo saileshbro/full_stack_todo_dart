@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/backend/melos_backend.iml" filepath="$PROJECT_DIR$/backend/melos_backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data_source/melos_data_source.iml" filepath="$PROJECT_DIR$/data_source/melos_data_source.iml" />
       <module fileurl="file://$PROJECT_DIR$/exceptions/melos_exceptions.iml" filepath="$PROJECT_DIR$/exceptions/melos_exceptions.iml" />
-      <module fileurl="file://$PROJECT_DIR$/failures/melos_failures.iml" filepath="$PROJECT_DIR$/failures/melos_failures.iml" />
-      <module fileurl="file://$PROJECT_DIR$/http_controller/melos_http_controller.iml" filepath="$PROJECT_DIR$/http_controller/melos_http_controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frontend/melos_fullstack_todo.iml" filepath="$PROJECT_DIR$/frontend/melos_fullstack_todo.iml" />
       <module fileurl="file://$PROJECT_DIR$/models/melos_models.iml" filepath="$PROJECT_DIR$/models/melos_models.iml" />
       <module fileurl="file://$PROJECT_DIR$/repository/melos_repository.iml" filepath="$PROJECT_DIR$/repository/melos_repository.iml" />
       <module fileurl="file://$PROJECT_DIR$/typedefs/melos_typedefs.iml" filepath="$PROJECT_DIR$/typedefs/melos_typedefs.iml" />
