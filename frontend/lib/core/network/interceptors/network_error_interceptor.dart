@@ -16,8 +16,13 @@ class NetworkErrorInterceptor extends Interceptor {
           errors: {},
         );
       }
-      final failureFromServer =
-          NetworkFailure.fromJson(err.response!.data as Map<String, dynamic>);
+      final errorJson = err.response!.data as Map<String, dynamic>;
+      final failureFromServer = NetworkFailure.fromJson(
+        {
+          ...errorJson,
+          'status_code': err.response!.statusCode,
+        },
+      );
       throw DioNetworkException(
         message: failureFromServer.message,
         statusCode: err.response!.statusCode ?? failureFromServer.statusCode,
