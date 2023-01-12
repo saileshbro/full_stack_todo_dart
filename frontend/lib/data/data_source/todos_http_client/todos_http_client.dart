@@ -21,5 +21,5 @@ abstract class TodosHttpClient {
   @PATCH('/todos/{id}')
   Future<Todo> updateTodo(@Path('id') TodoId id, @Body() UpdateTodoDto todo);
   @DELETE('/todos/{id}')
-  Future<Todo> deleteTodoById(@Path('id') TodoId id);
+  Future<void> deleteTodoById(@Path('id') TodoId id);
 }
