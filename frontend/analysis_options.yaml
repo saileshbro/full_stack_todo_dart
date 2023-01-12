@@ -1,5 +1,10 @@
 include: package:very_good_analysis/analysis_options.yaml
-
+analyzer:
+  exclude:
+    - "**/*.router.dart"
+    - "**/*.locator.dart"
+    - "**/*.config.dart"
+    - "**/*.g.dart"
 linter:
   rules:
     public_member_api_docs: false
