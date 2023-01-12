@@ -14,7 +14,7 @@ class NetworkFailure extends Failure with _$NetworkFailure {
   const factory NetworkFailure({
     required String message,
     required int statusCode,
-    @Default([]) List<String> errors,
+    @Default({}) Map<String, List<String>> errors,
   }) = _NetworkFailure;
 
   /// Returns a [NetworkFailure] from a json map.

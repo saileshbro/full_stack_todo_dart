@@ -19,12 +19,15 @@ void main() {
       const networkFailure = NetworkFailure(
         message: 'message',
         statusCode: 1,
-        errors: ['error1', 'error2'],
+        errors: {
+          'field': ['error1', 'error2']
+        },
       );
       final json = networkFailure.toJson();
       expect(json['message'], 'message');
       expect(json['status_code'], 1);
-      expect(json['errors'], orderedEquals(['error1', 'error2']));
+      // ignore: avoid_dynamic_calls
+      expect(json['errors']['field'], orderedEquals(['error1', 'error2']));
     });
   });
 }

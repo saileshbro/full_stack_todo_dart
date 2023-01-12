@@ -22,7 +22,7 @@ NetworkFailure _$NetworkFailureFromJson(Map<String, dynamic> json) {
 mixin _$NetworkFailure {
   String get message => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
-  List<String> get errors => throw _privateConstructorUsedError;
+  Map<String, List<String>> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $NetworkFailureCopyWith<$Res> {
           NetworkFailure value, $Res Function(NetworkFailure) then) =
       _$NetworkFailureCopyWithImpl<$Res, NetworkFailure>;
   @useResult
-  $Res call({String message, int statusCode, List<String> errors});
+  $Res call({String message, int statusCode, Map<String, List<String>> errors});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$NetworkFailureCopyWithImpl<$Res, $Val extends NetworkFailure>
       errors: null == errors
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Map<String, List<String>>,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$_NetworkFailureCopyWith<$Res>
       __$$_NetworkFailureCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, int statusCode, List<String> errors});
+  $Res call({String message, int statusCode, Map<String, List<String>> errors});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$_NetworkFailureCopyWithImpl<$Res>
       errors: null == errors
           ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Map<String, List<String>>,
     ));
   }
 }
@@ -122,7 +122,7 @@ class _$_NetworkFailure implements _NetworkFailure {
   const _$_NetworkFailure(
       {required this.message,
       required this.statusCode,
-      final List<String> errors = const []})
+      final Map<String, List<String>> errors = const {}})
       : _errors = errors;
 
   factory _$_NetworkFailure.fromJson(Map<String, dynamic> json) =>
@@ -132,13 +132,13 @@ class _$_NetworkFailure implements _NetworkFailure {
   final String message;
   @override
   final int statusCode;
-  final List<String> _errors;
+  final Map<String, List<String>> _errors;
   @override
   @JsonKey()
-  List<String> get errors {
-    if (_errors is EqualUnmodifiableListView) return _errors;
+  Map<String, List<String>> get errors {
+    if (_errors is EqualUnmodifiableMapView) return _errors;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_errors);
+    return EqualUnmodifiableMapView(_errors);
   }
 
   @override
@@ -175,7 +175,7 @@ abstract class _NetworkFailure implements NetworkFailure {
   const factory _NetworkFailure(
       {required final String message,
       required final int statusCode,
-      final List<String> errors}) = _$_NetworkFailure;
+      final Map<String, List<String>> errors}) = _$_NetworkFailure;
 
   factory _NetworkFailure.fromJson(Map<String, dynamic> json) =
       _$_NetworkFailure.fromJson;
@@ -185,7 +185,7 @@ abstract class _NetworkFailure implements NetworkFailure {
   @override
   int get statusCode;
   @override
-  List<String> get errors;
+  Map<String, List<String>> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_NetworkFailureCopyWith<_$_NetworkFailure> get copyWith =>
