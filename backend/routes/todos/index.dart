@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:backend/request_handlers/not_allowed_request_handler.dart';
 import 'package:backend/todo/controller/todo_controller.dart';
 import 'package:dart_frog/dart_frog.dart';
 
@@ -15,9 +14,6 @@ Future<Response> onRequest(RequestContext context) async {
     case HttpMethod.delete:
     case HttpMethod.head:
     case HttpMethod.options:
-      return Response.json(
-        body: {'error': '👀 Looks like you are lost 🔦'},
-        statusCode: HttpStatus.methodNotAllowed,
-      );
+      return notAllowedRequestHandler(context);
   }
 }

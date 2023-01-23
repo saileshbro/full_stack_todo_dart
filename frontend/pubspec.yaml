@@ -25,7 +25,7 @@ dependencies:
   repository:
     path: ../repository
   retrofit: ^3.3.1
-  stacked: ^3.0.1
+  stacked: 3.1.0+1
   stacked_services: ^0.9.9
   typedefs:
     path: ../typedefs
@@ -41,6 +41,8 @@ dev_dependencies:
   retrofit_generator: ^4.2.0
   stacked_generator: ^0.8.3
   very_good_analysis: ^3.1.0
-
+dependency_overrides:
+  json_annotation: ^4.8.0
+  json_serializable: ^6.6.0
 flutter:
   uses-material-design: true

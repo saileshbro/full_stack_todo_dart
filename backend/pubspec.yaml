@@ -7,7 +7,9 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+  bcrypt: ^1.1.3
   dart_frog: ^0.3.0
+  dart_jsonwebtoken: ^2.6.2
   data_source:
     path: ../data_source
   dotenv: ^4.0.1
