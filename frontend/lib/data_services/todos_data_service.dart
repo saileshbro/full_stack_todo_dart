@@ -4,7 +4,7 @@ import 'package:models/models.dart';
 import 'package:stacked/stacked.dart';
 
 @lazySingleton
-class TodosDataService with ReactiveServiceMixin {
+class TodosDataService with ListenableServiceMixin {
   TodosDataService() {
     listenToReactiveValues([_todos]);
   }

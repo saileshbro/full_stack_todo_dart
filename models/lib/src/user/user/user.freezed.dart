@@ -23,8 +23,9 @@ mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(toJson: anythingToNull)
+  @JsonKey(includeToJson: false)
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +42,8 @@ abstract class $UserCopyWith<$Res> {
       {String id,
       String name,
       String email,
-      DateTime createdAt,
-      @JsonKey(toJson: anythingToNull) String password});
+      @DateTimeConverter() DateTime createdAt,
+      @JsonKey(includeToJson: false) String password});
 }
 
 /// @nodoc
@@ -99,8 +100,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String id,
       String name,
       String email,
-      DateTime createdAt,
-      @JsonKey(toJson: anythingToNull) String password});
+      @DateTimeConverter() DateTime createdAt,
+      @JsonKey(includeToJson: false) String password});
 }
 
 /// @nodoc
@@ -150,8 +151,8 @@ class _$_User implements _User {
       {required this.id,
       required this.name,
       required this.email,
-      required this.createdAt,
-      @JsonKey(toJson: anythingToNull) required this.password});
+      @DateTimeConverter() required this.createdAt,
+      @JsonKey(includeToJson: false) this.password = ''});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -162,9 +163,10 @@ class _$_User implements _User {
   @override
   final String email;
   @override
+  @DateTimeConverter()
   final DateTime createdAt;
   @override
-  @JsonKey(toJson: anythingToNull)
+  @JsonKey(includeToJson: false)
   final String password;
 
   @override
@@ -207,12 +209,11 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-          {required final String id,
-          required final String name,
-          required final String email,
-          required final DateTime createdAt,
-          @JsonKey(toJson: anythingToNull) required final String password}) =
-      _$_User;
+      {required final String id,
+      required final String name,
+      required final String email,
+      @DateTimeConverter() required final DateTime createdAt,
+      @JsonKey(includeToJson: false) final String password}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -223,9 +224,10 @@ abstract class _User implements User {
   @override
   String get email;
   @override
+  @DateTimeConverter()
   DateTime get createdAt;
   @override
-  @JsonKey(toJson: anythingToNull)
+  @JsonKey(includeToJson: false)
   String get password;
   @override
   @JsonKey(ignore: true)

@@ -7,7 +7,7 @@ import 'package:typedefs/typedefs.dart';
 
 /// {@template user_data_source_impl}
 /// User data source implementation
-/// This class is used to connect to the database and perform CRUD operations on users table
+/// This class is used to connect to the database and perform CRUD operations
 /// {@endtemplate}
 class UserDataSourceImpl extends UserDataSource {
   /// {@macro user_data_source_impl}
@@ -67,7 +67,10 @@ class UserDataSourceImpl extends UserDataSource {
     try {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
-        'SELECT id, name, email, password, created_at FROM users WHERE email = @email',
+        '''
+        SELECT id, name, email, password, created_at
+        FROM users WHERE email = @email
+        ''',
         substitutionValues: {'email': email},
       );
       if (result.isEmpty) {

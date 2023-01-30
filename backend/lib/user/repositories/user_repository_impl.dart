@@ -20,11 +20,17 @@ class UserRepositoryImpl implements UserRepository {
 
   /// The data source used to perform CRUD operations
   final UserDataSource dataSource;
+
+  /// The password hasher service used to hash and check passwords
   final PasswordHasherService passwordHasherService;
 
   @override
   Future<Either<Failure, User>> createUser(CreateUserDto createUserDto) async {
     try {
+      final userExists = await getUserByEmail(createUserDto.email);
+      if (userExists.isRight) {
+        throw const ServerException('Email already in use');
+      }
       // dto is already validated in the controller
       // we will hash the password here
       final hashedPassword = passwordHasherService.hashPassword(
@@ -69,7 +75,11 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, User>> loginUser(LoginUserDto loginUserDto) async {
     try {
       final email = loginUserDto.email;
-      final user = await dataSource.getUserByEmail(email);
+      final userExists = await getUserByEmail(email);
+      if (userExists.isLeft) {
+        throw const ServerException('Invalid email or password');
+      }
+      final user = userExists.right;
       final password = loginUserDto.password;
       final isPasswordCorrect =
           passwordHasherService.checkPassword(password, user.password);
@@ -83,6 +93,22 @@ class UserRepositoryImpl implements UserRepository {
         ServerFailure(
           message: 'Invalid email or password',
           statusCode: HttpStatus.unauthorized,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> getUserByEmail(String email) async {
+    try {
+      final user = await dataSource.getUserByEmail(email);
+      return Right(user);
+    } catch (e) {
+      log(e.toString());
+      return const Left(
+        ServerFailure(
+          message: 'User with this email does not exist',
+          statusCode: HttpStatus.notFound,
         ),
       );
     }

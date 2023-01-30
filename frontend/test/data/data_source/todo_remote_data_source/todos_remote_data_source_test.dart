@@ -1,7 +1,7 @@
 import 'package:data_source/data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fullstack_todo/data/data_source/todos_http_client/todos_http_client.dart';
 import 'package:fullstack_todo/data/data_source/todo_remote_data_source/todos_remote_data_source.dart';
+import 'package:fullstack_todo/data/data_source/todos_http_client/todos_http_client.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:models/models.dart';
@@ -65,6 +65,7 @@ void main() {
 
 final todo = Todo(
   id: 1,
+  userId: 'userId',
   title: 'title',
   createdAt: DateTime.now(),
   description: 'description',

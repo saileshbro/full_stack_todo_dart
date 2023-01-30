@@ -21,6 +21,7 @@ class Todo with _$Todo {
   /// when the todo item was last updated.
   factory Todo({
     required TodoId id,
+    required UserId userId,
     required String title,
     @Default('') String description,
     @Default(false) bool completed,

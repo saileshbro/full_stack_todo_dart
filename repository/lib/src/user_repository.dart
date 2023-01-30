@@ -15,4 +15,7 @@ abstract class UserRepository {
 
   /// Login a user with the given [loginUserDto].
   Future<Either<Failure, User>> loginUser(LoginUserDto loginUserDto);
+
+  /// Get a user with the given [email].
+  Future<Either<Failure, User>> getUserByEmail(String email);
 }

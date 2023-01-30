@@ -1,7 +1,12 @@
 import 'dart:io';
 
+import 'package:backend/db/database_connection.dart';
 import 'package:backend/services/jwt_service.dart';
+import 'package:backend/todo/controller/todo_controller.dart';
+import 'package:backend/todo/data_source/todo_data_source_impl.dart';
+import 'package:backend/todo/repositories/todo_repository_impl.dart';
 import 'package:dart_frog/dart_frog.dart';
+import 'package:data_source/data_source.dart';
 import 'package:exceptions/exceptions.dart';
 import 'package:models/models.dart';
 import 'package:repository/repository.dart';
@@ -24,8 +29,8 @@ Handler authorizationMiddleware(Handler handler) {
       final userRepo = context.read<UserRepository>();
       final user = await userRepo.getUserById(decodedUser.id);
       if (user.isLeft) throw const UnauthorizedException();
-      final updated = context.provide<User>(() => user.right);
-      return handler(updated);
+      context = _handleAuthDependencies(context, user.right);
+      return handler(context);
     } on UnauthorizedException catch (e) {
       return Response.json(
         body: {'message': e.message},
@@ -33,4 +38,20 @@ Handler authorizationMiddleware(Handler handler) {
       );
     }
   };
+}
+
+RequestContext _handleAuthDependencies(
+  RequestContext context,
+  User user,
+) {
+  final db = context.read<DatabaseConnection>();
+  final todoDs = TodoDataSourceImpl(db, user);
+  final todoRepo = TodoRepositoryImpl(todoDs);
+  final todoController = TodoController(todoRepo);
+  late RequestContext updatedContext;
+  updatedContext = context.provide<User>(() => user);
+  updatedContext = updatedContext.provide<TodoController>(() => todoController);
+  updatedContext = updatedContext.provide<TodoRepository>(() => todoRepo);
+  updatedContext = updatedContext.provide<TodoDataSource>(() => todoDs);
+  return updatedContext;
 }

@@ -63,7 +63,7 @@ class ShowTodosViewModel extends ReactiveViewModel {
   }
 
   @override
-  List<ReactiveServiceMixin> get reactiveServices => [_todosDataService];
+  List<ListenableServiceMixin> get listenableServices => [_todosDataService];
 
   Future<void>? handleTodo([Todo? todo]) {
     return _navigationService.navigateTo<void>(

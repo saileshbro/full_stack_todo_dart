@@ -48,6 +48,7 @@ void main() {
 
 final _todo1 = Todo(
   id: 1,
+  userId: 'userId1',
   title: 'title1',
   description: 'description1',
   completed: false,
@@ -56,6 +57,7 @@ final _todo1 = Todo(
 
 final _todo2 = Todo(
   id: 2,
+  userId: 'userId2',
   title: 'title2',
   description: 'description2',
   completed: false,

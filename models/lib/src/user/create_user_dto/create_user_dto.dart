@@ -38,9 +38,16 @@ class CreateUserDto with _$CreateUserDto {
       if (email.isEmpty) {
         errors['email'] = ['Email is required'];
       }
+      if (!email.contains('@')) {
+        errors['email'] = ['Email is invalid'];
+      }
       if (password.isEmpty) {
         errors['password'] = ['Password is required'];
       }
+      if (password.length < 6) {
+        errors['password'] = ['Password must be at least 6 characters'];
+      }
+
       if (errors.isEmpty) return Right(CreateUserDto.fromJson(json));
       throw BadRequestException(
         message: 'Validation failed',

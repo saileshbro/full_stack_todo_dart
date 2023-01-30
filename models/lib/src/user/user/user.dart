@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:models/src/serializers/anything_to_null.dart';
+import 'package:models/src/serializers/date_time_converter.dart';
 import 'package:typedefs/typedefs.dart';
 
 part 'user.freezed.dart';
@@ -15,9 +15,11 @@ class User with _$User {
     required UserId id,
     required String name,
     required String email,
-    required DateTime createdAt,
-    @JsonKey(toJson: anythingToNull) required String password,
+    @DateTimeConverter() required DateTime createdAt,
+    @Default('') @JsonKey(includeToJson: false) String password,
   }) = _User;
 
+  /// {@macro user}
+  /// Create a [User] from a json object.
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

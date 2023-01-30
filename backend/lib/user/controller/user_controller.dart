@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:backend/controller/http_controller.dart';
-import 'package:backend/request_handlers/unimplemented_handler.dart';
 import 'package:backend/services/jwt_service.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:models/models.dart';
@@ -18,13 +17,6 @@ class UserController extends HttpController {
 
   final UserRepository _repo;
   final JWTService _jwtService;
-
-  @override
-  FutureOr<Response> show(Request request, String id) {
-    // TODO: implement show
-    // implement authorization middleware to check if the user is authorized to view the user
-    return unimplementedHandler();
-  }
 
   @override
   FutureOr<Response> store(Request request) async {
@@ -56,6 +48,7 @@ class UserController extends HttpController {
     );
   }
 
+  /// Login a user
   FutureOr<Response> login(Request request) async {
     final parsedBody = await parseJson(request);
     if (parsedBody.isLeft) {
@@ -90,7 +83,7 @@ class UserController extends HttpController {
     return Response.json(
       body: {
         'token': token,
-        'user': user.toJson(),
+        'user': user.toJson()..remove('password'),
       },
       statusCode: httpStatus ?? HttpStatus.ok,
     );
