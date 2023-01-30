@@ -9,7 +9,7 @@ import 'package:typedefs/typedefs.dart';
 /// User data source implementation
 /// This class is used to connect to the database and perform CRUD operations
 /// {@endtemplate}
-class UserDataSourceImpl extends UserDataSource {
+class UserDataSourceImpl implements UserDataSource {
   /// {@macro user_data_source_impl}
   UserDataSourceImpl(this._databaseConnection);
 
@@ -21,15 +21,10 @@ class UserDataSourceImpl extends UserDataSource {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
         '''
-        INSERT INTO users (name, email, password, created_at)
-        VALUES (@name, @email, @password, @created_at) RETURNING *
+        INSERT INTO users (name, email, password)
+        VALUES (@name, @email, @password) RETURNING *
         ''',
-        substitutionValues: {
-          'name': user.name,
-          'email': user.email,
-          'password': user.password,
-          'created_at': DateTime.now(),
-        },
+        substitutionValues: user.toJson(),
       );
       if (result.affectedRowCount == 0) {
         throw const ServerException('Failed to create todo');

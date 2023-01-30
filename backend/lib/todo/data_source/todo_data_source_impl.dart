@@ -20,14 +20,13 @@ class TodoDataSourceImpl implements TodoDataSource {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
         '''
-        INSERT INTO todos (title, description, completed, created_at, user_id)
-        VALUES (@title, @description, @completed, @created_at, @user_id) RETURNING *
+        INSERT INTO todos (title, description, completed,  user_id)
+        VALUES (@title, @description, @completed, @user_id) RETURNING *
         ''',
         substitutionValues: {
           'title': todo.title,
           'description': todo.description,
           'completed': false,
-          'created_at': DateTime.now(),
           'user_id': _user.id,
         },
       );
