@@ -1,5 +1,6 @@
 export './bad_request_exception.dart';
 export './not_found_exception.dart';
+export './unauthorized_exception.dart';
 
 /// {@template http_exception}
 /// This is the base class for all http exceptions

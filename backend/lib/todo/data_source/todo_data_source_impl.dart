@@ -11,22 +11,23 @@ import 'package:typedefs/typedefs.dart';
 /// {@endtemplate}
 class TodoDataSourceImpl implements TodoDataSource {
   /// {@macro todo_data_source_impl}
-  const TodoDataSourceImpl(this._databaseConnection);
+  const TodoDataSourceImpl(this._databaseConnection, this._user);
   final DatabaseConnection _databaseConnection;
+  final User _user;
   @override
   Future<Todo> createTodo(CreateTodoDto todo) async {
     try {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
         '''
-        INSERT INTO todos (title, description, completed, created_at)
-        VALUES (@title, @description, @completed, @created_at) RETURNING *
+        INSERT INTO todos (title, description, completed,  user_id)
+        VALUES (@title, @description, @completed, @user_id) RETURNING *
         ''',
         substitutionValues: {
           'title': todo.title,
           'description': todo.description,
           'completed': false,
-          'created_at': DateTime.now(),
+          'user_id': _user.id,
         },
       );
       if (result.affectedRowCount == 0) {
@@ -35,6 +36,7 @@ class TodoDataSourceImpl implements TodoDataSource {
       final todoMap = result.first.toColumnMap();
       return Todo(
         id: todoMap['id'] as int,
+        userId: todoMap['user_id'] as String,
         title: todoMap['title'] as String,
         description: todoMap['description'] as String,
         createdAt: todoMap['created_at'] as DateTime,
@@ -115,10 +117,12 @@ class TodoDataSourceImpl implements TodoDataSource {
             completed = COALESCE(@new_completed, completed),
             updated_at = current_timestamp
         WHERE id = @id
+        AND user_id = @user_id
         RETURNING *
         ''',
         substitutionValues: {
           'id': id,
+          'user_id': _user.id,
           'new_title': todo.title,
           'new_description': todo.description,
           'new_completed': todo.completed,

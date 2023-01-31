@@ -131,8 +131,7 @@ void main() {
       verifyNoMoreInteractions(mockTodoRepository);
     });
 
-    test(
-        'should mark completed when called update, but should revert again if failed',
+    test('on update should mark completed, but should revert again if failed',
         () async {
       const exception = NotFoundException('Not found');
       final updated = _todo.copyWith(completed: !_todo.completed);
@@ -169,6 +168,7 @@ void main() {
 
 final _todo = Todo(
   id: 1,
+  userId: 'userId',
   title: 'title',
   description: 'description',
   completed: false,

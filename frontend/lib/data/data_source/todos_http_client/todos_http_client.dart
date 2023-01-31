@@ -10,7 +10,7 @@ part 'todos_http_client.g.dart';
 @lazySingleton
 abstract class TodosHttpClient {
   @factoryMethod
-  factory TodosHttpClient(Dio _dio) = _TodosHttpClient;
+  factory TodosHttpClient(Dio dio) = _TodosHttpClient;
 
   @GET('/todos')
   Future<List<Todo>> getAllTodo();

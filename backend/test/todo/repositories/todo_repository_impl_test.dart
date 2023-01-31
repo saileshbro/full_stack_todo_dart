@@ -259,6 +259,7 @@ final _updateTodoDto = UpdateTodoDto(
 );
 final _todo = Todo(
   id: 1,
+  userId: 'userId',
   title: 'title',
   description: 'description',
   completed: false,

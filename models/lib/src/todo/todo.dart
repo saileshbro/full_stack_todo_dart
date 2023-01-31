@@ -2,6 +2,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:models/src/serializers/date_time_converter.dart';
 import 'package:typedefs/typedefs.dart';
 
+export './create_todo_dto/create_todo_dto.dart';
+export './update_todo_dto/update_todo_dto.dart';
+
 part 'todo.freezed.dart';
 part 'todo.g.dart';
 
@@ -21,6 +24,7 @@ class Todo with _$Todo {
   /// when the todo item was last updated.
   factory Todo({
     required TodoId id,
+    required UserId userId,
     required String title,
     @Default('') String description,
     @Default(false) bool completed,

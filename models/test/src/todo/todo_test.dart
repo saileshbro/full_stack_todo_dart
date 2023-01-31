@@ -7,12 +7,14 @@ void main() {
       final createdAt = DateTime.now();
       final todo = Todo(
         id: 1,
+        userId: 'userId',
         title: 'title',
         description: 'description',
         createdAt: createdAt,
       );
       expect(todo.toJson(), {
         'id': 1,
+        'user_id': 'userId',
         'title': 'title',
         'description': 'description',
         'completed': false,
@@ -26,12 +28,14 @@ void main() {
       final updatedAt = DateTime.now().subtract(const Duration(days: 1));
       final todo = Todo.fromJson({
         'id': 1,
+        'user_id': 'userId',
         'title': 'title',
         'description': 'description',
         'created_at': createdAt.toIso8601String(),
         'updated_at': updatedAt.toIso8601String(),
       });
       expect(todo.id, 1);
+      expect(todo.userId, 'userId');
       expect(todo.title, 'title');
       expect(todo.description, 'description');
       expect(todo.completed, false);

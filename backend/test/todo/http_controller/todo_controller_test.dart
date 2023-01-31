@@ -68,6 +68,7 @@ void main() {
         final createdAt = DateTime.now();
         final todo = Todo(
           id: 1,
+          userId: 'userId',
           title: 'title',
           description: 'description',
           createdAt: createdAt,
@@ -143,6 +144,7 @@ void main() {
           final createdAt = DateTime.now();
           final todo = Todo(
             id: 1,
+            userId: 'userId',
             title: 'title',
             description: 'description',
             createdAt: createdAt,
@@ -335,6 +337,7 @@ void main() {
       test('should return todo if data valid', () async {
         final todo = Todo(
           id: 1,
+          userId: 'userId',
           title: 'title',
           description: 'description',
           createdAt: DateTime.now(),
@@ -568,6 +571,7 @@ void main() {
         final updatedAt = DateTime.now();
         final todo = Todo(
           id: 1,
+          userId: '1',
           title: 'UPDATED',
           description: 'description',
           completed: false,
@@ -603,6 +607,7 @@ void main() {
             completion(
               jsonEncode({
                 'id': 1,
+                'user_id': '1',
                 'title': 'UPDATED',
                 'description': 'description',
                 'completed': false,

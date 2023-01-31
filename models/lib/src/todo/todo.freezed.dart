@@ -21,6 +21,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Todo {
   int get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $TodoCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String userId,
       String title,
       String description,
       bool completed,
@@ -62,6 +64,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? title = null,
     Object? description = null,
     Object? completed = null,
@@ -73,6 +76,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -105,6 +112,7 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String userId,
       String title,
       String description,
       bool completed,
@@ -122,6 +130,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? title = null,
     Object? description = null,
     Object? completed = null,
@@ -133,6 +142,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -162,6 +175,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
 class _$_Todo implements _Todo {
   _$_Todo(
       {required this.id,
+      required this.userId,
       required this.title,
       this.description = '',
       this.completed = false,
@@ -172,6 +186,8 @@ class _$_Todo implements _Todo {
 
   @override
   final int id;
+  @override
+  final String userId;
   @override
   final String title;
   @override
@@ -189,7 +205,7 @@ class _$_Todo implements _Todo {
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, description: $description, completed: $completed, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Todo(id: $id, userId: $userId, title: $title, description: $description, completed: $completed, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -198,6 +214,7 @@ class _$_Todo implements _Todo {
         (other.runtimeType == runtimeType &&
             other is _$_Todo &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -211,8 +228,8 @@ class _$_Todo implements _Todo {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, description, completed, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, title, description,
+      completed, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -231,6 +248,7 @@ class _$_Todo implements _Todo {
 abstract class _Todo implements Todo {
   factory _Todo(
       {required final int id,
+      required final String userId,
       required final String title,
       final String description,
       final bool completed,
@@ -241,6 +259,8 @@ abstract class _Todo implements Todo {
 
   @override
   int get id;
+  @override
+  String get userId;
   @override
   String get title;
   @override
