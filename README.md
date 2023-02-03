@@ -2,9 +2,9 @@
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
-[![Powered by Dart Frog][dart_frog_badge]](dart_frog_link)
-[![Powered by Mason][mason_badge]](mason_link)
-[![Maintained with Melos][melos_badge]](melos_link)
+[![Powered by Dart Frog][dart_frog_badge]][dart_frog_link]
+[![Powered by Mason][mason_badge]][mason_link]
+[![Maintained with Melos][melos_badge]][melos_link]
 
 ## A full-stack to-do app written in [Flutter][flutter_link] and [dart_frog][dart_frog_link], using a mono repository and driven by [`melos`][melos_link].
 
@@ -16,11 +16,11 @@
 
 The [backend][backend_link] is built with [dart_frog][dart_frog_link] and is responsible for the server-side functionality of the app. It includes components such as controllers, request handlers, middlewares, services, and repositories for todo and user management.
 
-The [backend][backend_link] also implements [JWT](jwt_link) authentication to secure access to the application data. The data storage and retrieval is facilitated through a postgres database with the implementation of data sources and repositories from the data_source and repository packages.
+The [backend][backend_link] also implements [JWT][jwt_link] authentication to secure access to the application data. The data storage and retrieval is facilitated through a postgres database with the implementation of data sources and repositories from the data_source and repository packages.
 
 The [backend][backend_link] is equipped with end-to-end tests and tests for individual components to ensure its reliability and performance.
 
-## [**`frontend`**](frontend_link)
+## [**`frontend`**][frontend_link]
 
 The [frontend][frontend_link] is written in [Flutter][flutter_link] and is responsible for the client-side functionality of the app. It includes all the necessary components for a smooth user experience, including UI elements, data management, network communication and more.
 
@@ -28,29 +28,29 @@ The [frontend][frontend_link] communicates with the [backend][backend_link] to r
 
 It implements [jwt][jwt_link] authentication and handles exceptions thrown by the [backend][backend_link] gracefully through the use of the [`exceptions`][exceptions_link] package.
 
-## [**`models`**](models_link)
+## [**`models`**][models_link]
 
 The models package contains the data objects used in the app. It uses the [`freezed`][freezed_link] library to define the data models, including to-do and user models, as well as data transfer objects (DTOs). The package also includes data validation logic in the DTOs, making use of the primary keys defined in the [`typedefs`][typedefs_link] package. This helps ensure the integrity of the data used throughout the application.
 
-## [**`data_source`**](data_source_link)
+## [**`data_source`**][data_source_link]
 
 The [`data_source`][data_source_link] package contains the abstract contracts for all the data sources used in the application. These contracts define the interface for accessing and manipulating data stored in the application's database. The [`data_source`][data_source_link] package makes use of the [`typedefs`][typedefs_link] and [`models`][models_link] packages to enforce data consistency and type safety. This package serves as a layer between the repository and the database, allowing the implementation details to be separated from the main application logic.
 
-## [**`repository`**](repository_link)
+## [**`repository`**][repository_link]
 
 The [`repository`][repository_link] package provides a central location for data storage and retrieval. It includes abstract contracts to be implemented in the [backend][backend_link] and [`frontend`][frontend_link], and makes use of the [`models`][models_link] and [`typedefs`][typedefs_link] packages.
 
 This package uses [`either_dart`][either_dart_link] to return either a valid response or a failure. The [`repository`][repository_link] package is designed to provide a flexible and extensible data storage layer, allowing us to easily implement their own data sources and repositories while adhering to a consistent API. With its use of [`either_dart`][either_dart_link], it provides robust error handling and reporting capabilities, ensuring the stability and reliability of the app's data storage layer.
 
-## [**`failures`**](failures_link)
+## [**`failures`**][failures_link]
 
 The failures package contains the implementation of custom failures and error handling for the app. These failures are used by the [`repository`][repository_link] package to return specific error messages for different scenarios such as database errors, network errors, invalid input, and unauthorized access.
 
-## [**`typedefs`**](typedefs_link)
+## [**`typedefs`**][typedefs_link]
 
 The [`typedefs`][typedefs_link] package contains the various data types used in the app. It also includes the type mapper, which maps a given string to a specific type or returns a failure if the mapping is unsuccessful.
 
-## [**`exceptions`**](exceptions_link)
+## [**`exceptions`**][exceptions_link]
 
 The [`exceptions`][exceptions_link] package includes custom exceptions for the app that can be thrown in case of certain errors or failures. These exceptions contain descriptive error messages and provide information about the type of error that occurred. They are used to provide more structured error handling and improve the overall error handling process in the app.
 
