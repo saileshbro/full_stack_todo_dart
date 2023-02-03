@@ -1,0 +1,115 @@
+.
+├── backend
+│   ├── e2e
+│   ├── lib
+│   │   ├── controller
+│   │   ├── db
+│   │   ├── middlewares
+│   │   ├── request_handlers
+│   │   ├── services
+│   │   ├── todo
+│   │   │   ├── controller
+│   │   │   ├── data_source
+│   │   │   └── repositories
+│   │   └── user
+│   │       ├── controller
+│   │       ├── data_source
+│   │       └── repositories
+│   ├── routes
+│   │   ├── todos
+│   │   └── users
+│   └── test
+│       ├── request_handlers
+│       ├── routes
+│       ├── services
+│       └── todo
+│           ├── http_controller
+│           └── repositories
+├── data_source
+│   └── lib
+│       └── src
+├── exceptions
+│   ├── lib
+│   │   └── src
+│   │       ├── http_exception
+│   │       ├── network_exception
+│   │       └── server_exception
+│   └── test
+│       └── src
+│           ├── http_exception
+│           └── server_exception
+├── failures
+│   ├── lib
+│   │   └── src
+│   │       ├── network_failure
+│   │       ├── request_failure
+│   │       ├── server_failure
+│   │       └── validation_failure
+│   └── test
+│       └── src
+│           └── network_failure
+├── frontend
+│   ├── android
+│   ├── e2e
+│   ├── integration_test
+│   ├── ios
+│   ├── lib
+│   │   ├── constants
+│   │   ├── core
+│   │   │   ├── app
+│   │   │   ├── di
+│   │   │   └── network
+│   │   │       ├── exceptions
+│   │   │       └── interceptors
+│   │   ├── data
+│   │   │   ├── data_source
+│   │   │   │   ├── todo_remote_data_source
+│   │   │   │   └── todos_http_client
+│   │   │   └── repositories
+│   │   ├── data_services
+│   │   └── presentation
+│   │       ├── maintain_todo
+│   │       └── show_todos
+│   │           └── widgets
+│   ├── test
+│   │   ├── data
+│   │   │   ├── data_source
+│   │   │   │   └── todo_remote_data_source
+│   │   │   └── repositories
+│   │   ├── data_services
+│   │   └── presentation
+│   │       ├── maintain_todo
+│   │       └── show_todos
+│   ├── web
+│   │   └── icons
+│   └── windows
+│       ├── flutter
+│       │   └── ephemeral
+│       └── runner
+│           └── resources
+├── models
+│   ├── lib
+│   │   └── src
+│   │       ├── serializers
+│   │       ├── todo
+│   │       │   ├── create_todo_dto
+│   │       │   ├── todo
+│   │       │   └── update_todo_dto
+│   │       └── user
+│   │           ├── create_user_dto
+│   │           └── login_user_dto
+│   └── test
+│       └── src
+│           ├── create_todo_dto
+│           ├── serializers
+│           ├── todo
+│           └── update_todo_dto
+├── repository
+│   └── lib
+│       └── src
+└── typedefs
+│   ├── lib
+│   │   └── src
+│   └── test
+│       └── src
+└── melos.yaml
