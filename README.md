@@ -6,9 +6,9 @@
 [![Powered by Mason][mason_badge]][mason_link]
 [![Maintained with Melos][melos_badge]][melos_link]
 
-## A full-stack to-do app written in [Flutter][flutter_link] and [dart_frog][dart_frog_link], using a mono repository and driven by [`melos`][melos_link].
+A full-stack to-do app written in [Flutter][flutter_link] and [dart_frog][dart_frog_link], using a mono repository and driven by [`melos`][melos_link].
 
-## Read the full article on [**`saileshdahal.com.np`**][series_link]
+> Read the full article on [**`saileshdahal.com.np`**][series_link]
 
 # Packages
 
