@@ -3,11 +3,11 @@ repository: https://github.com/saileshbro/full_stack_todo_dart.git
 packages:
   - backend
   - frontend
-  - data_sorce
+  - data_source
   - exceptions
   - models
   - repository
-  - failutes
+  - failures
   - typedefs
 
 sdkPath: .fvm/flutter_sdk
