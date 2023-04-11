@@ -11,7 +11,6 @@ part 'todos_http_client.g.dart';
 abstract class TodosHttpClient {
   @factoryMethod
   factory TodosHttpClient(Dio dio) = _TodosHttpClient;
-
   @GET('/todos')
   Future<List<Todo>> getAllTodo();
   @GET('/todos/{id}')

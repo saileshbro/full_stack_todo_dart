@@ -11,7 +11,7 @@ class ShowTodosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ShowTodosViewModel>.reactive(
-      viewModelBuilder: locator,
+      viewModelBuilder: locator.call,
       onViewModelReady: (model) => model.init(),
       builder: (
         BuildContext context,

@@ -1,3 +1,4 @@
+/// The models library.
 library models;
 
 export 'src/todo/todo.dart';

@@ -12,6 +12,7 @@ class DioNetworkException extends DioError implements NetworkException {
   @override
   final int statusCode;
   @override
+  // ignore: overridden_fields
   final String message;
   @override
   final Map<String, List<String>> errors;

@@ -20,7 +20,7 @@ class MaintainTodoView extends HookWidget {
     final buttonFocusNode = useFocusNode();
     return ViewModelBuilder<MaintainTodoViewModel>.nonReactive(
       onViewModelReady: (model) => model.init(todo),
-      viewModelBuilder: locator,
+      viewModelBuilder: locator.call,
       builder: (
         BuildContext context,
         MaintainTodoViewModel model,

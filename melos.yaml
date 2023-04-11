@@ -21,7 +21,7 @@ scripts:
       cuncurrency: 1
       fail-fast: true
     description: Starts the dev server for the backend
-    select-package:
+    packageFilters:
       scope: backend
       flutter: false
 
@@ -38,11 +38,11 @@ scripts:
     exec:
       concurrency: 1
       fail-fast: true
-    select-package:
-      depends-on: build_runner
+    packageFilters:
+      dependsOn: build_runner
 
   test:unit:
     run: melos exec -c 1 --fail-fast -- "flutter test"
     description: Run Unit tests for a specific package in this project.
-    select-package:
-      dir-exists: test
+    packageFilters:
+      dirExists: test

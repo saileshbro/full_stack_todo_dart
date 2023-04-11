@@ -5,8 +5,8 @@ import 'package:stacked/stacked.dart';
 
 class TodoListTile extends ViewModelWidget<ShowTodosViewModel> {
   const TodoListTile({
-    super.key,
     required this.todo,
+    super.key,
   });
 
   final Todo todo;

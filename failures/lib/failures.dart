@@ -1,3 +1,4 @@
+/// This library contains all the failures that can be thrown by the application
 library failures;
 
 export 'src/failure.dart';

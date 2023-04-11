@@ -1,3 +1,4 @@
+/// A library that contains all the exceptions used in the project.
 library exceptions;
 
 export 'src/http_exception/http_exception.dart';
