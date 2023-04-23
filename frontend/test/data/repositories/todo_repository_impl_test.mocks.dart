@@ -5,9 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
 
-import 'package:fullstack_todo/data/data_source/todo_remote_data_source/todos_remote_data_source.dart'
+import 'package:fullstack_todo/data/data_source/todo/todo_remote_data_source/todos_remote_data_source.dart'
     as _i4;
-import 'package:fullstack_todo/data/data_source/todos_http_client/todos_http_client.dart'
+import 'package:fullstack_todo/data/data_source/todo/todos_http_client/todos_http_client.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:models/models.dart' as _i3;

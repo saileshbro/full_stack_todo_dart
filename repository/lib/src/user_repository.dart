@@ -11,10 +11,14 @@ abstract class UserRepository {
   Future<Either<Failure, User>> getUserById(UserId id);
 
   /// Create a user with the given [createUserDto].
-  Future<Either<Failure, User>> createUser(CreateUserDto createUserDto);
+  Future<Either<Failure, AuthenticatedUser>> createUser(
+    CreateUserDto createUserDto,
+  );
 
   /// Login a user with the given [loginUserDto].
-  Future<Either<Failure, User>> loginUser(LoginUserDto loginUserDto);
+  Future<Either<Failure, AuthenticatedUser>> loginUser(
+    LoginUserDto loginUserDto,
+  );
 
   /// Get a user with the given [email].
   Future<Either<Failure, User>> getUserByEmail(String email);

@@ -81,7 +81,7 @@ class MaintainTodoView extends HookWidget {
                     return const SizedBox.shrink();
                   },
                   child: SizedBox(
-                    height: 50,
+                    height: kToolbarHeight,
                     child: ElevatedButton(
                       key: const Key('saveButton'),
                       focusNode: buttonFocusNode,
@@ -101,9 +101,7 @@ class MaintainTodoView extends HookWidget {
                               SizedBox(width: 10),
                               Text(
                                 'Save',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
+                                style: TextStyle(fontSize: 20),
                               ),
                             ],
                           );
@@ -115,7 +113,8 @@ class MaintainTodoView extends HookWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: MediaQuery.of(context).viewPadding.bottom)
               ],
             ),
           ),

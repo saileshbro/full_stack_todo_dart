@@ -53,10 +53,7 @@ class TodoDataSourceImpl implements TodoDataSource {
     try {
       await _databaseConnection.connect();
       await _databaseConnection.db.query(
-        '''
-        DELETE FROM todos
-        WHERE id = @id
-        ''',
+        'DELETE FROM todos WHERE id = @id',
         substitutionValues: {'id': id},
       );
     } on PostgreSQLException catch (e) {
@@ -71,7 +68,8 @@ class TodoDataSourceImpl implements TodoDataSource {
     try {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
-        'SELECT * FROM todos ORDER BY created_at DESC',
+        'SELECT * FROM todos WHERE user_id = @user_id ORDER BY created_at DESC',
+        substitutionValues: {'user_id': _user.id},
       );
       final data =
           result.map((e) => e.toColumnMap()).map(Todo.fromJson).toList();
@@ -88,8 +86,8 @@ class TodoDataSourceImpl implements TodoDataSource {
     try {
       await _databaseConnection.connect();
       final result = await _databaseConnection.db.query(
-        'SELECT * FROM todos WHERE id = @id',
-        substitutionValues: {'id': id},
+        'SELECT * FROM todos WHERE id = @id AND user_id = "@user_id"',
+        substitutionValues: {'id': id, 'user_id': _user.id},
       );
       if (result.isEmpty) {
         throw const NotFoundException('Todo not found');

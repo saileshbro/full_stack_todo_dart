@@ -13,9 +13,9 @@ final env = DotEnv()..load();
 final _db = DatabaseConnection(env);
 final _userDs = UserDataSourceImpl(_db);
 const _passwordHasher = PasswordHasherService();
-final _userRepo = UserRepositoryImpl(_userDs, _passwordHasher);
 final _jwtService = JWTService(env);
-final _userController = UserController(_userRepo, _jwtService);
+final _userRepo = UserRepositoryImpl(_userDs, _passwordHasher, _jwtService);
+final _userController = UserController(_userRepo);
 
 Handler middleware(Handler handler) {
   return handler

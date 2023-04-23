@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:failures/failures.dart';
 import 'package:fullstack_todo/core/network/exceptions/dio_network_exception.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class NetworkErrorInterceptor extends Interceptor {
+  const NetworkErrorInterceptor();
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     const genericInternetIssue =

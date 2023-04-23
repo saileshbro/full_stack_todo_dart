@@ -19,5 +19,4 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
       'created_at': const DateTimeConverter().toJson(instance.createdAt),
-      'password': instance.password,
     };

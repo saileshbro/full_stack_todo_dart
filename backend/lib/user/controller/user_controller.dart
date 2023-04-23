@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:backend/controller/http_controller.dart';
-import 'package:backend/services/jwt_service.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:models/models.dart';
 import 'package:repository/repository.dart';
@@ -13,11 +12,9 @@ import 'package:repository/repository.dart';
 /// {@endtemplate}
 class UserController extends HttpController {
   /// {@macro user_controller}
-  UserController(this._repo, this._jwtService);
+  UserController(this._repo);
 
   final UserRepository _repo;
-  final JWTService _jwtService;
-
   @override
   FutureOr<Response> store(Request request) async {
     final parsedBody = await parseJson(request);
@@ -44,7 +41,8 @@ class UserController extends HttpController {
         body: {'message': left.message},
         statusCode: left.statusCode,
       ),
-      (right) => _signAndSendToken(right, HttpStatus.created),
+      (right) =>
+          Response.json(body: right.toJson(), statusCode: HttpStatus.created),
     );
   }
 
@@ -74,18 +72,7 @@ class UserController extends HttpController {
         body: {'message': left.message},
         statusCode: left.statusCode,
       ),
-      _signAndSendToken,
-    );
-  }
-
-  Response _signAndSendToken(User user, [int? httpStatus]) {
-    final token = _jwtService.sign(user.toJson());
-    return Response.json(
-      body: {
-        'token': token,
-        'user': user.toJson()..remove('password'),
-      },
-      statusCode: httpStatus ?? HttpStatus.ok,
+      (right) => Response.json(body: right.toJson()),
     );
   }
 }

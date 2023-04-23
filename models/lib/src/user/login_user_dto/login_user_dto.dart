@@ -19,6 +19,9 @@ class LoginUserDto with _$LoginUserDto {
   }) = _LoginUserDto;
 
   /// {@macro login_user_dto}
+  factory LoginUserDto.empty() => LoginUserDto(email: '', password: '');
+
+  /// {@macro login_user_dto}
   factory LoginUserDto.fromJson(Map<String, dynamic> json) =>
       _$LoginUserDtoFromJson(json);
 

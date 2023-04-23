@@ -1,5 +1,5 @@
 import 'package:data_source/data_source.dart';
-import 'package:fullstack_todo/data/data_source/todos_http_client/todos_http_client.dart';
+import 'package:fullstack_todo/data/data_source/todo/todos_http_client/todos_http_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:models/models.dart';
 import 'package:typedefs/typedefs.dart';

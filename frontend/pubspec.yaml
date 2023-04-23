@@ -8,6 +8,7 @@ environment:
   flutter: ">=3.7.0"
 
 dependencies:
+  dartz: ^0.10.1
   data_source:
     path: ../data_source
   dio: ^5.1.1
@@ -26,6 +27,7 @@ dependencies:
   repository:
     path: ../repository
   retrofit: ^4.0.1
+  shared_preferences: ^2.1.0
   stacked: 3.1.0+2
   stacked_services: 0.9.9
   typedefs:

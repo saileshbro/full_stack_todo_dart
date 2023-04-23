@@ -22,6 +22,13 @@ class CreateUserDto with _$CreateUserDto {
   factory CreateUserDto.fromJson(Map<String, dynamic> json) =>
       _$CreateUserDtoFromJson(json);
 
+  /// {@macro create_user_dto}
+  factory CreateUserDto.empty() => CreateUserDto(
+        name: '',
+        email: '',
+        password: '',
+      );
+
   /// Validates the [CreateUserDto] and throws a [BadRequestException] if the
   /// validation fails.
   static Either<ValidationFailure, CreateUserDto> validated(

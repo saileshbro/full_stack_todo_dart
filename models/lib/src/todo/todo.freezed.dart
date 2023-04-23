@@ -23,10 +23,10 @@ mixin _$Todo {
   int get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  bool get completed => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  bool get completed => throw _privateConstructorUsedError;
   @DateTimeConverterNullable()
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -44,9 +44,9 @@ abstract class $TodoCopyWith<$Res> {
       {int id,
       String userId,
       String title,
+      @DateTimeConverter() DateTime createdAt,
       String description,
       bool completed,
-      @DateTimeConverter() DateTime createdAt,
       @DateTimeConverterNullable() DateTime? updatedAt});
 }
 
@@ -66,9 +66,9 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
     Object? id = null,
     Object? userId = null,
     Object? title = null,
+    Object? createdAt = null,
     Object? description = null,
     Object? completed = null,
-    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,6 +84,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -92,10 +96,6 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -114,9 +114,9 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       {int id,
       String userId,
       String title,
+      @DateTimeConverter() DateTime createdAt,
       String description,
       bool completed,
-      @DateTimeConverter() DateTime createdAt,
       @DateTimeConverterNullable() DateTime? updatedAt});
 }
 
@@ -132,9 +132,9 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
     Object? id = null,
     Object? userId = null,
     Object? title = null,
+    Object? createdAt = null,
     Object? description = null,
     Object? completed = null,
-    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_$_Todo(
@@ -150,6 +150,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -158,10 +162,6 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -177,9 +177,9 @@ class _$_Todo implements _Todo {
       {required this.id,
       required this.userId,
       required this.title,
+      @DateTimeConverter() required this.createdAt,
       this.description = '',
       this.completed = false,
-      @DateTimeConverter() required this.createdAt,
       @DateTimeConverterNullable() this.updatedAt});
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
@@ -191,21 +191,21 @@ class _$_Todo implements _Todo {
   @override
   final String title;
   @override
+  @DateTimeConverter()
+  final DateTime createdAt;
+  @override
   @JsonKey()
   final String description;
   @override
   @JsonKey()
   final bool completed;
   @override
-  @DateTimeConverter()
-  final DateTime createdAt;
-  @override
   @DateTimeConverterNullable()
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Todo(id: $id, userId: $userId, title: $title, description: $description, completed: $completed, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Todo(id: $id, userId: $userId, title: $title, createdAt: $createdAt, description: $description, completed: $completed, updatedAt: $updatedAt)';
   }
 
   @override
@@ -216,20 +216,20 @@ class _$_Todo implements _Todo {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.completed, completed) ||
                 other.completed == completed) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, title, description,
-      completed, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, title, createdAt,
+      description, completed, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -250,9 +250,9 @@ abstract class _Todo implements Todo {
       {required final int id,
       required final String userId,
       required final String title,
+      @DateTimeConverter() required final DateTime createdAt,
       final String description,
       final bool completed,
-      @DateTimeConverter() required final DateTime createdAt,
       @DateTimeConverterNullable() final DateTime? updatedAt}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
@@ -264,12 +264,12 @@ abstract class _Todo implements Todo {
   @override
   String get title;
   @override
+  @DateTimeConverter()
+  DateTime get createdAt;
+  @override
   String get description;
   @override
   bool get completed;
-  @override
-  @DateTimeConverter()
-  DateTime get createdAt;
   @override
   @DateTimeConverterNullable()
   DateTime? get updatedAt;

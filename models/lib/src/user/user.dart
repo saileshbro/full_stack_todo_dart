@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:models/src/serializers/date_time_converter.dart';
 import 'package:typedefs/typedefs.dart';
 
+export './authenticated_user/authenticated_user.dart';
 export './create_user_dto/create_user_dto.dart';
 export './login_user_dto/login_user_dto.dart';
 

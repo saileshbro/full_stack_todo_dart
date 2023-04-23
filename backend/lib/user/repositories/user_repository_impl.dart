@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:backend/services/jwt_service.dart';
 import 'package:backend/services/password_hasher_service.dart';
 import 'package:data_source/data_source.dart';
 import 'package:either_dart/either.dart';
@@ -16,7 +17,11 @@ import 'package:typedefs/typedefs.dart';
 
 class UserRepositoryImpl implements UserRepository {
   /// {@macro user_repository_impl}
-  UserRepositoryImpl(this.dataSource, this.passwordHasherService);
+  UserRepositoryImpl(
+    this.dataSource,
+    this.passwordHasherService,
+    this.jwtService,
+  );
 
   /// The data source used to perform CRUD operations
   final UserDataSource dataSource;
@@ -24,8 +29,12 @@ class UserRepositoryImpl implements UserRepository {
   /// The password hasher service used to hash and check passwords
   final PasswordHasherService passwordHasherService;
 
+  /// The JWT service used to create and verify JWTs
+  final JWTService jwtService;
   @override
-  Future<Either<Failure, User>> createUser(CreateUserDto createUserDto) async {
+  Future<Either<Failure, AuthenticatedUser>> createUser(
+    CreateUserDto createUserDto,
+  ) async {
     try {
       final userExists = await getUserByEmail(createUserDto.email);
       if (userExists.isRight) {
@@ -33,15 +42,11 @@ class UserRepositoryImpl implements UserRepository {
       }
       // dto is already validated in the controller
       // we will hash the password here
-      final hashedPassword = passwordHasherService.hashPassword(
-        createUserDto.password,
-      );
-      final user = await dataSource.createUser(
-        createUserDto.copyWith(
-          password: hashedPassword,
-        ),
-      );
-      return Right(user);
+      final hashedPassword =
+          passwordHasherService.hashPassword(createUserDto.password);
+      final user = await dataSource
+          .createUser(createUserDto.copyWith(password: hashedPassword));
+      return Right(_signAndSendToken(user));
     } on ServerException catch (e) {
       log(e.message);
       return Left(
@@ -72,7 +77,9 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, User>> loginUser(LoginUserDto loginUserDto) async {
+  Future<Either<Failure, AuthenticatedUser>> loginUser(
+    LoginUserDto loginUserDto,
+  ) async {
     try {
       final email = loginUserDto.email;
       final userExists = await getUserByEmail(email);
@@ -83,10 +90,8 @@ class UserRepositoryImpl implements UserRepository {
       final password = loginUserDto.password;
       final isPasswordCorrect =
           passwordHasherService.checkPassword(password, user.password);
-      if (!isPasswordCorrect) {
-        throw const ServerException('Invalid email or password');
-      }
-      return Right(user);
+      if (isPasswordCorrect) return Right(_signAndSendToken(user));
+      throw const ServerException('Invalid email or password');
     } catch (e) {
       log(e.toString());
       return const Left(
@@ -112,5 +117,13 @@ class UserRepositoryImpl implements UserRepository {
         ),
       );
     }
+  }
+
+  AuthenticatedUser _signAndSendToken(User user) {
+    final token = jwtService.sign(user.toJson());
+    return AuthenticatedUser(
+      user: user,
+      token: token,
+    );
   }
 }

@@ -10,9 +10,9 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       id: json['id'] as int,
       userId: json['user_id'] as String,
       title: json['title'] as String,
+      createdAt: const DateTimeConverter().fromJson(json['created_at']),
       description: json['description'] as String? ?? '',
       completed: json['completed'] as bool? ?? false,
-      createdAt: const DateTimeConverter().fromJson(json['created_at']),
       updatedAt: const DateTimeConverterNullable().fromJson(json['updated_at']),
     );
 
@@ -20,9 +20,9 @@ Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
       'title': instance.title,
+      'created_at': const DateTimeConverter().toJson(instance.createdAt),
       'description': instance.description,
       'completed': instance.completed,
-      'created_at': const DateTimeConverter().toJson(instance.createdAt),
       'updated_at':
           const DateTimeConverterNullable().toJson(instance.updatedAt),
     };
